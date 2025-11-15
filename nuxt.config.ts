@@ -1,5 +1,24 @@
+import vuetify from 'vite-plugin-vuetify'
+
 export default defineNuxtConfig({
   modules: ['@nuxtjs/supabase', '@nuxthub/core'],
+
+  vite: {
+    ssr: {
+      noExternal: ['vuetify'],
+    },
+  },
+
+  build: {
+    transpile: ['vuetify'],
+  },
+
+  hooks: {
+    'vite:extendConfig': (config) => {
+      config.plugins ||= []
+      config.plugins.push(vuetify({ autoImport: true }))
+    },
+  },
 
   supabase: {
     redirectOptions: {

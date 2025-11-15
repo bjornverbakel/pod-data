@@ -15,5 +15,13 @@
     "nuxt": "^4.1.1",
     "wrangler": "^4.34.0"
   },
-  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0"
+  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "vite-plugin-vuetify": "^2.1.2",
+    "vuetify": "^3.10.11"
+  },
+  "resolutions": {
+    "cookie": "0.7.2"
+  }
 }

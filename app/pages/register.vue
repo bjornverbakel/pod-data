@@ -1,58 +1,67 @@
 <template>
-  <div class="DaoRb">
-    <h1 class="eSHwvX">Create an account</h1>
-    <form @submit.prevent="signUp">
+  <div>
+    <v-card-title class="text-h4 mb-4">Create an account</v-card-title>
+    
+    <v-form @submit.prevent="signUp">
       <ErrorAlert :error-msg="authError" @clearError="clearError" />
-      <div class="jGQTZC">
-        <label class="iJLvzO">
-          <div class="fdCSlG">
-            <input class="cmCuLh" type="text" placeholder="First name" v-model="name" />
-          </div>
-        </label>
-        <label class="iJLvzO">
-          <div class="fdCSlG">
-            <input class="cmCuLh" type="text" placeholder="Last name" v-model="lastname" />
-          </div>
-        </label>
-        <label class="iJLvzO">
-          <div class="fdCSlG">
-            <input class="cmCuLh" type="text" placeholder="Company (Optional)" v-model="company" />
-          </div>
-        </label>
-        <label class="iJLvzO">
-          <div class="fdCSlG">
-            <input class="cmCuLh" type="text" placeholder="Email address" v-model="email" />
-          </div>
-        </label>
-        <label class="iJLvzO">
-          <div class="fdCSlG">
-            <input class="cmCuLh" type="password" placeholder="Password" v-model="password" />
-          </div>
-        </label>
-      </div>
-      <div class="jGQTZC">
-        <button class="gZMQdu" type="submit" :disabled="loading">
-          <div class="bjhGPG" :class="{ loading: loading }">Sign up</div>
-          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="jjoFVh" :class="{ loading: loading }">
-            <g fill="none" stroke-width="1.5" stroke-linecap="round" class="faEWLr" style="stroke: var(--icon-color)">
-              <circle stroke-opacity=".2" cx="8" cy="8" r="6"></circle>
-              <circle cx="8" cy="8" r="6" class="VFMrX"></circle>
-            </g>
-          </svg>
-        </button>
-        <div class="xxEKN">
-          By signing up you agree to our
-          <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" class="bkFclS">
-            <span>API Terms of Service</span>
-          </a>
-          and
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="bkFclS">
-            <span>Privacy Policy</span>
-          </a>
-          .
-        </div>
-      </div>
-    </form>
+      
+      <v-text-field
+        v-model="name"
+        label="First name"
+        type="text"
+        variant="outlined"
+        class="mb-3"
+      />
+      
+      <v-text-field
+        v-model="lastname"
+        label="Last name"
+        type="text"
+        variant="outlined"
+        class="mb-3"
+      />
+      
+      <v-text-field
+        v-model="company"
+        label="Company (Optional)"
+        type="text"
+        variant="outlined"
+        class="mb-3"
+      />
+      
+      <v-text-field
+        v-model="email"
+        label="Email address"
+        type="email"
+        variant="outlined"
+        class="mb-3"
+      />
+      
+      <v-text-field
+        v-model="password"
+        label="Password"
+        type="password"
+        variant="outlined"
+        class="mb-3"
+      />
+      
+      <v-btn
+        type="submit"
+        color="primary"
+        block
+        :loading="loading"
+        class="mb-3"
+      >
+        Sign up
+      </v-btn>
+      
+      <v-card-text class="text-caption text-center">
+        By signing up you agree to our
+        <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">API Terms of Service</a>
+        and
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+      </v-card-text>
+    </v-form>
   </div>
 </template>
 
@@ -60,9 +69,11 @@
 definePageMeta({
   layout: 'auth',
 });
+
 useHead({
   title: 'Register | supaAuth',
 });
+
 const email = ref('');
 const password = ref('');
 const name = ref('');
@@ -96,7 +107,7 @@ const signUp = async () => {
   });
   if (error) {
     loading.value = false;
-    authError.value = 'Failed to fetch';
+    authError.value = error.message;
   }
 };
 
