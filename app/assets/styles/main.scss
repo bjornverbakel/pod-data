@@ -10,10 +10,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: $font-family-base;
+      color: rgb(var(--v-theme-text)) !important;
 }
 
 .v-application {
   font-family: $font-family-base !important;
+      color: rgb(var(--v-theme-text)) !important;
   
   .text-h1, .text-h2, .text-h3, .text-h4, .text-h5, .text-h6,
   .v-btn, .v-card-title, .v-list-item-title {
