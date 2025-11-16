@@ -3,7 +3,7 @@
   <NavDrawer />
 
   <v-main>
-    <v-container fluid class="main-content pa-sm-8 pa-md-16">
+    <v-container fluid class="main-content py-8 pa-sm-8 pa-md-16 d-flex flex-column ga-8 ga-md-12">
       <slot />
     </v-container>
   </v-main>

@@ -1,41 +1,44 @@
 <template>
-  <div>
-    <h1>Endings</h1>
+  <h1 class="main-header">Endings</h1>
 
-    <v-alert v-if="error" type="error" class="mb-4">
-      {{ error }}
-    </v-alert>
+  <v-alert v-if="error" type="error" class="mb-4">
+    {{ error }}
+  </v-alert>
 
-    <v-skeleton-loader v-if="loading" type="table" />
+  <v-skeleton-loader v-if="loading" type="table" />
 
-    <v-table v-else>
-      <thead>
-        <tr>
-          <th>Completed</th>
-          <th>Letter</th>
-          <th>Name</th>
-          <th>Chapter</th>
-          <th>Type</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="ending in endings" :key="ending.id">
-          <td>
-            <v-checkbox
-              :model-value="isCompleted(ending)"
-              @update:model-value="val => handleToggle(ending, val)"
-              hide-details
-              :disabled="!user"
-            />
-          </td>
-          <td>{{ ending.letter }}</td>
-          <td>{{ ending.name }}</td>
-          <td>{{ ending.chapter }}</td>
-          <td>{{ ending.type }}</td>
-        </tr>
-      </tbody>
-    </v-table>
-  </div>
+  <v-table :hover="!!user" fixedHeader height="600" v-else>
+    <thead>
+      <tr>
+        <th>Completed</th>
+        <th>Letter</th>
+        <th>Name</th>
+        <th>Chapter</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        v-for="ending in endings"
+        :key="ending.id"
+        @click="user && handleToggle(ending, !isCompleted(ending))"
+        :style="{ cursor: user ? 'pointer' : 'default' }"
+      >
+        <td>
+          <v-checkbox
+            :model-value="isCompleted(ending)"
+            @update:model-value="val => handleToggle(ending, val)"
+            hide-details
+            :disabled="!user"
+          />
+        </td>
+        <td>{{ ending.letter }}</td>
+        <td>{{ ending.name }}</td>
+        <td>{{ ending.chapter }}</td>
+        <td>{{ ending.type }}</td>
+      </tr>
+    </tbody>
+  </v-table>
 </template>
 
 <script lang="ts" setup>
