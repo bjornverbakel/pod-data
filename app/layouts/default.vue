@@ -1,14 +1,12 @@
 <template>
-  <v-app>
-    <Header app />
-    <NavDrawer app />
+  <Header />
+  <NavDrawer />
 
-    <v-main>
-      <v-container fluid class="main-content pa-sm-8 pa-md-16">
-        <slot />
-      </v-container>
-    </v-main>
-  </v-app>
+  <v-main>
+    <v-container fluid class="main-content pa-sm-8 pa-md-16">
+      <slot />
+    </v-container>
+  </v-main>
 </template>
 
 <script setup lang="ts">
