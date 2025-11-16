@@ -10,11 +10,11 @@
   <v-table :hover="!!user" fixedHeader height="600" v-else>
     <thead>
       <tr>
-        <th>Completed</th>
-        <th>Letter</th>
+        <th width="1%">Done</th>
+        <th width="1%">Letter</th>
         <th>Name</th>
-        <th>Chapter</th>
-        <th>Type</th>
+        <th width="20%">Chapter</th>
+        <th width="10%">Type</th>
       </tr>
     </thead>
     <tbody>
