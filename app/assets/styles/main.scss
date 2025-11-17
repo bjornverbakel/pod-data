@@ -36,6 +36,12 @@ body {
   letter-spacing: normal;
 }
 
+.sub-header {
+  text-shadow: 4px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
 main {
   // Custom scrollbar
   ::-webkit-scrollbar {

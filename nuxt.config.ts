@@ -28,8 +28,6 @@ export default defineNuxtConfig({
   },
 
   app: {
-    layoutTransition: { name: 'layout', mode: 'out-in' },
-    pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       charset: 'utf-16',
       viewport: 'width=500, initial-scale=1',
