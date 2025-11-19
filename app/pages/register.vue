@@ -98,16 +98,24 @@ const handleSignUp = async () => {
   const currentPassword = password.value
 
   if (!trimmedUsername || !trimmedEmail || !currentPassword) {
-    let missing = []
-    if (!trimmedUsername) missing.push('username')
-    if (!trimmedEmail) missing.push('email')
-    if (!currentPassword) missing.push('password')
-    feedback.value = { message: `Missing: ${missing.join(', ')}`, type: 'error' }
+    feedback.value = { message: `Please fill in all required fields.`, type: 'error' }
     return
   }
 
   if (currentPassword.length < 6) {
     feedback.value = { message: 'Password must be at least 6 characters long', type: 'error' }
+    return
+  }
+
+  // Check for letters and digits
+  const hasLetter = /[a-zA-Z]/.test(currentPassword)
+  const hasDigit = /\d/.test(currentPassword)
+
+  if (!hasLetter || !hasDigit) {
+    feedback.value = {
+      message: 'Password must contain at least one letter and one number',
+      type: 'error',
+    }
     return
   }
 
@@ -130,7 +138,12 @@ const handleSignUp = async () => {
   loading.value = false
 
   if (error) {
-    feedback.value = { message: error.message, type: 'error' }
+    // Handle specific Supabase error messages
+    if (error.message.includes('Unable to validate email address: invalid format')) {
+      feedback.value = { message: 'Please enter a valid email address.', type: 'error' }
+    } else {
+      feedback.value = { message: error.message, type: 'error' }
+    }
   } else {
     // Success message for both conversion and new signup
     feedback.value = {
