@@ -11,3 +11,9 @@ const clearSuccess = () => {
   emit('clearSuccess')
 }
 </script>
+
+<style scoped>
+.v-alert {
+  min-height: fit-content;
+}
+</style>

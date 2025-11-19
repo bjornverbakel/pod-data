@@ -11,3 +11,9 @@ const clearError = () => {
   emit('clearError')
 }
 </script>
+
+<style scoped>
+.v-alert {
+  min-height: fit-content;
+}
+</style>

@@ -96,7 +96,11 @@ const signUp = async () => {
 
   // If user is anonymous, convert them instead of creating a new account
   if (isAnonymous.value) {
-    const { error } = await convertAnonymousToUser(email.value, password.value, username.value)
+    const { error } = await convertAnonymousToUser({
+      email: email.value,
+      password: password.value,
+      username: username.value,
+    })
 
     loading.value = false
 
@@ -114,6 +118,7 @@ const signUp = async () => {
       options: {
         data: {
           username: username.value,
+          full_name: username.value,
         },
       },
     })
