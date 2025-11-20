@@ -7,7 +7,7 @@
 
   <v-skeleton-loader v-if="loading" type="table" />
 
-  <v-table :hover="!!user" fixedHeader height="600" v-else>
+  <v-table hover fixedHeader height="600" v-else>
     <thead>
       <tr>
         <th width="1%">Done</th>
@@ -21,15 +21,14 @@
       <tr
         v-for="ending in endings"
         :key="ending.id"
-        @click="user && handleToggle(ending, !isCompleted(ending))"
-        :style="{ cursor: user ? 'pointer' : 'default' }"
+        @click="handleToggle(ending, !isCompleted(ending))"
+        style="cursor: pointer"
       >
         <td>
           <v-checkbox
             :model-value="isCompleted(ending)"
             @update:model-value="val => handleToggle(ending, val)"
             hide-details
-            :disabled="!user"
           />
         </td>
         <td>{{ ending.letter }}</td>
@@ -71,6 +70,10 @@ const isCompleted = (ending: any) => {
 }
 
 const handleToggle = async (ending: any, completed: boolean) => {
+  if (!user.value) {
+    return navigateTo('/login')
+  }
+
   // Optimistic update
   const index = endings.value.findIndex(e => e.id === ending.id)
   if (index !== -1) {

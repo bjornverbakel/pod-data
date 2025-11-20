@@ -5,6 +5,13 @@
 
       <v-form class="d-flex flex-column ga-4" @submit.prevent="handleLogin">
         <AppAlert
+          v-if="isAnonymous"
+          type="warning"
+          message="You're currently in Guest Mode. If you wish to keep your guest progress, please sign up instead."
+          :closable="false"
+        />
+
+        <AppAlert
           v-if="feedback.message"
           :message="feedback.message"
           :type="feedback.type"
@@ -35,13 +42,19 @@
         <v-btn type="submit" color="primary" block :loading="loading">Log in</v-btn>
       </v-form>
 
-      <div class="d-flex align-center">
+      <div v-if="!isAnonymous" class="d-flex align-center">
         <v-divider />
         <span class="mx-4">Or</span>
         <v-divider />
       </div>
 
-      <v-btn @click="handleAnonymousSignIn" variant="tonal" block :loading="anonymousLoading">
+      <v-btn
+        v-if="!isAnonymous"
+        @click="handleAnonymousSignIn"
+        variant="tonal"
+        block
+        :loading="anonymousLoading"
+      >
         Continue as Guest
       </v-btn>
 
@@ -60,7 +73,7 @@ useHead({
   title: 'Login | NACC',
 })
 
-const { login, signInAnonymously } = useAuth()
+const { isAnonymous, login, signInAnonymously } = useAuth()
 const user = useSupabaseUser()
 const loading = ref(false)
 const anonymousLoading = ref(false)
@@ -69,7 +82,8 @@ const email = ref('')
 const password = ref('')
 
 watchEffect(async () => {
-  if (user.value) {
+  // Only redirect non-anonymous authenticated users
+  if (user.value && !isAnonymous.value) {
     await navigateTo('/')
   }
 })

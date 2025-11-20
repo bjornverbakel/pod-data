@@ -11,8 +11,7 @@
           type="info"
           message="You're currently in Guest Mode. Sign up to secure your progress!"
           :closable="false"
-        >
-        </AppAlert>
+        />
 
         <AppAlert
           v-if="feedback.message"
