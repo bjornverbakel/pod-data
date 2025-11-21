@@ -79,3 +79,10 @@ main {
     }
   }
 }
+
+
+th {
+  background: rgb(var(--v-theme-primary)) !important;
+  color: rgb(var(--v-theme-on-primary)) !important;
+  font-weight: bold !important;
+}
