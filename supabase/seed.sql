@@ -1,0 +1,56 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 17.6
+-- Dumped by pg_dump version 18.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Data for Name: endings; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('076e834a-5d0e-4058-8245-f3db9cbe53a6', 'A', 'flowers for m[A]chines', '10-05_1', 'Main', NULL, '2025-11-16 18:04:26.776711+00', 1);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('fd1a7566-932d-4e60-bbe9-3c86a7de096e', 'B', 'or not to [B]e', '10-05_2', 'Main', NULL, '2025-11-16 18:04:26.776711+00', 2);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('d76d7a97-d554-4e19-862e-3f3bc3d140f0', 'C', 'meaningless [C]ode', '17-09', 'Main', NULL, '2025-11-16 18:04:26.776711+00', 3);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('98f2373f-84c3-4024-b47a-8ec9b704c58d', 'D', 'chil[D]hood''s end', '17-09', 'Main', NULL, '2025-11-16 18:04:26.776711+00', 4);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('e8fdbb37-a548-4fa8-8782-bca42cdfcbe9', 'E', 'the [E]nd of YoRHa', '17-09 or 17-11', 'Main', NULL, '2025-11-16 18:04:26.776711+00', 5);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('4698513e-cef8-4f4b-9993-d4141c60e01e', 'F', 'mission [F]ailed', '01-03_2', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 6);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('11f7d296-e1d0-4fea-98c2-448c084868bc', 'G', 'hun[G]ry for knowledge', '01-01_2', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 7);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('f669c1f4-c4c1-498e-9d95-6acc23e9303a', 'H', 'a mountain too [H]igh', '05-02', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 8);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('0e379830-aa7e-48e1-a564-8a0412e026d7', 'I', 'no [I] in team', '08-01_2', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 9);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('16b03def-42f3-4081-9881-a6b50825be2e', 'J', 'bad [J]udgement', '09-01_3', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 10);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('39b4dc2f-25e7-4577-8b90-0b9566de2dda', 'K', 'aji wo [K]utta', '06-01', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 11);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('129b6fe2-71a9-4e15-b02a-5a3115220406', 'L', '[L]one wolf', '10-01_3, 10-02, or 10-03', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 12);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('bba2e8f0-addc-437f-9b37-953b04833acf', 'M', 'break ti[M]e', '14-03', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 13);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('f7308301-0b31-4b7a-b06c-2f8d94e0a983', 'N', '[N]o man''s village', '05-01', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 14);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('4f5b54fe-ece1-4827-bc1c-38c9d7d25897', 'O', 'just y[O]u and me', '11-03 or 11-04', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 15);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('2194855e-5539-4834-9068-d2080a140b09', 'P', 'corru[P]tion', '11-06', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 16);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('3afb6493-5ce7-4214-86e2-df21fb641d9e', 'Q', '[Q]uestionable actions', '11-07', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 17);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('7eea9574-497e-4bc8-be1b-e75b79410183', 'R', 'mave[R]ick', '14-05', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 18);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('77abcbc7-6123-46b5-a20c-b7c0ba773247', 'S', 'city e[S]cape', '17-01', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 19);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('5602ab0b-1fa6-402e-bbde-29f965ae9b6e', 'T', 'fa[T]al error', 'Any', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 20);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('66a0b456-1bf5-4997-a923-dad42c1e2883', 'U', 'deb[U]nked', 'Any', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 21);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('479be2ca-656b-4670-b3c6-69a4df54a340', 'V', 'reckless bra[V]ery', '17-01', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 22);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('ac327b69-598d-4c07-bbba-dde4e21e0b42', 'W', 'broken [W]ings', '01-01_1', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 23);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('60a2272d-8adc-4f8c-959b-4def1dd8d315', 'X', 'time to rela[X]', '11-06', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 24);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('90e0e6c9-f424-4a40-af52-fba1f1b54327', 'Y', 'head[Y] battle', 'Any', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 25);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('b8ba168f-974c-4066-a79f-77bb575a2ec1', 'Z', 'over[Z]ealous', '14-01', 'Hidden', NULL, '2025-11-16 18:04:26.776711+00', 26);
+INSERT INTO public.endings (id, letter, name, chapter, type, guide_url, created_at, sort_order) VALUES ('61a80dc2-aab9-42d3-a8b8-731a79469d73', '◬', '◬', 'Any', 'DLC', NULL, '2025-11-16 18:04:26.776711+00', 27);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

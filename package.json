@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "supabase:types": "supabase gen types typescript --project-id uwxuwdrvfqbgczgpnxwb --schema public > app/types/database.types.ts"
+    "supabase:types": "supabase gen types typescript --project-id uwxuwdrvfqbgczgpnxwb --schema public > app/types/database.types.ts",
+    "supabase:dump": "supabase exec db dump -f db_schema.sql"
   },
   "devDependencies": {
     "@nuxthub/core": "0.9.0",
