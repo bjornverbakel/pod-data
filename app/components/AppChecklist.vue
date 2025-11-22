@@ -1,7 +1,7 @@
 <template>
   <h1 class="main-header">{{ title }}</h1>
 
-  <v-alert v-if="error" type="error" class="mb-4">
+  <v-alert v-if="error" type="error">
     {{ error }}
   </v-alert>
 

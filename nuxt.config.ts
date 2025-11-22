@@ -39,6 +39,14 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
+  imports: {
+    dirs: [
+      'composables/auth',
+      'composables/common',
+      'composables/game',
+    ],
+  },
+
   app: {
     head: {
       charset: 'utf-16',
