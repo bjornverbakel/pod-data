@@ -78,5 +78,3 @@ const sortCharacters = (chars: string[] | null) => {
 // Fetch on mount and when user changes
 // Handled by useChecklist
 </script>
-
-<style></style>
