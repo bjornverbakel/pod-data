@@ -3,7 +3,7 @@
     <v-card class="pa-12 d-flex flex-column ga-8" width="600" outlined>
       <v-card-title class="text-h4 py-0">Forgot password</v-card-title>
 
-      <v-form class="d-flex flex-column ga-4" @submit.prevent="resetPassword">
+      <v-form class="d-flex flex-column ga-4" @submit.prevent="handleResetPassword">
         <AppAlert
           v-if="feedback.message"
           :message="feedback.message"
@@ -33,25 +33,31 @@ useHead({
   title: 'Forgot Password | Pod Data',
 })
 
+const { resetPassword } = useAuth()
 const email = ref('')
 const token = ref('')
-const client = useSupabaseClient()
 const loading = ref(false)
 const feedback = ref({ message: '', type: 'info' as 'success' | 'error' | 'info' | 'warning' })
 
-const resetPassword = async () => {
+const handleResetPassword = async () => {
   if (!email.value.trim()) {
     feedback.value = { message: 'Please enter your email.', type: 'error' }
+    return
+  }
+
+  if (!token.value) {
+    feedback.value = { message: 'Please complete the security check', type: 'error' }
     return
   }
 
   loading.value = true
   const startTime = Date.now()
 
-  const { error } = await client.auth.resetPasswordForEmail(email.value.trim(), {
-    redirectTo: `${window.location.origin}/new-password`,
-    captchaToken: token.value,
-  })
+  const { error } = await resetPassword(
+    email.value.trim(),
+    token.value,
+    `${window.location.origin}/new-password`
+  )
 
   // Ensure minimum loading time to prevent timing attacks
   const elapsedTime = Date.now() - startTime

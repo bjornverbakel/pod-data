@@ -10,7 +10,26 @@ export const useAuth = () => {
     return await client.auth.signInAnonymously()
   }
 
+  const verifyCaptcha = async (token: string) => {
+    try {
+      await $fetch('/api/verify-captcha', {
+        method: 'POST',
+        body: { token }
+      })
+      return true
+    } catch (e) {
+      return false
+    }
+  }
+
   const login = async (email: string, password: string, captchaToken?: string) => {
+    if (captchaToken) {
+      const isValid = await verifyCaptcha(captchaToken)
+      if (!isValid) {
+        return { data: { user: null, session: null }, error: { message: 'Security check failed. Please try again.' } }
+      }
+    }
+
     return await client.auth.signInWithPassword({ 
       email, 
       password,
@@ -20,11 +39,18 @@ export const useAuth = () => {
     })
   }
 
-  const convertAnonymousToUser = async (credentials: { email: string; password: string; username?: string }) => {
-    const { email, password, username } = credentials
+  const convertAnonymousToUser = async (credentials: { email: string; password: string; username?: string; captchaToken?: string }) => {
+    const { email, password, username, captchaToken } = credentials
     
     if (!isAnonymous.value) {
       return { error: new Error('User is not anonymous') }
+    }
+
+    if (captchaToken) {
+      const isValid = await verifyCaptcha(captchaToken)
+      if (!isValid) {
+        return { data: null, error: { message: 'Security check failed. Please try again.' } }
+      }
     }
 
     const updateData: { email: string; password: string; data?: { username: string; full_name: string } } = {
@@ -71,6 +97,14 @@ export const useAuth = () => {
     }
     
     const { email, password, username, captchaToken } = credentials
+
+    if (captchaToken) {
+      const isValid = await verifyCaptcha(captchaToken)
+      if (!isValid) {
+        return { data: { user: null, session: null }, error: { message: 'Security check failed. Please try again.' } }
+      }
+    }
+
     return await client.auth.signUp({
       email,
       password,
@@ -84,11 +118,26 @@ export const useAuth = () => {
     })
   }
 
+  const resetPassword = async (email: string, captchaToken?: string, redirectTo?: string) => {
+    if (captchaToken) {
+      const isValid = await verifyCaptcha(captchaToken)
+      if (!isValid) {
+        return { data: null, error: { message: 'Security check failed. Please try again.' } }
+      }
+    }
+
+    return await client.auth.resetPasswordForEmail(email, {
+      redirectTo,
+      captchaToken,
+    })
+  }
+
   return {
     isAnonymous,
     convertAnonymousToUser,
     signInAnonymously,
     login,
     register,
+    resetPassword,
   }
 }

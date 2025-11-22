@@ -15,6 +15,10 @@
 </template>
 
 <script lang="ts" setup>
+useHead({
+  title: 'Achievements | Pod Data',
+})
+
 import type { Header } from '~/components/AppChecklist.vue'
 
 const { getAllAchievementsWithStatus, toggleAchievement } = useAchievements()

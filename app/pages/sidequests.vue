@@ -30,6 +30,10 @@
 </template>
 
 <script lang="ts" setup>
+useHead({
+  title: 'Sidequests | Pod Data',
+})
+
 import type { Header } from '~/components/AppChecklist.vue'
 
 const { getAllSidequestsWithStatus, toggleSidequest } = useSidequests()

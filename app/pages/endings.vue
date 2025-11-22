@@ -11,6 +11,10 @@
 </template>
 
 <script lang="ts" setup>
+useHead({
+  title: 'Endings | Pod Data',
+})
+
 import type { Header } from '~/components/AppChecklist.vue'
 
 const { getAllEndingsWithStatus, toggleEnding } = useEndings()
