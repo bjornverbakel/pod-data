@@ -1,5 +1,5 @@
 <template>
-  <AppChecklist
+  <Checklist
     title="Endings"
     :items="endings"
     :loading="loading"
@@ -17,7 +17,7 @@ useHead({
   title: 'Endings | Pod Data',
 })
 
-import type { Header } from '~/components/AppChecklist.vue'
+import type { Header } from '~/components/Checklist.vue'
 
 const { getAllEndingsWithStatus, toggleEnding } = useEndings()
 

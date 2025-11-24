@@ -1,5 +1,5 @@
 <template>
-  <AppChecklist
+  <Checklist
     title="Fish"
     :items="fish"
     :loading="loading"
@@ -16,7 +16,7 @@
         </div>
       </div>
     </template>
-  </AppChecklist>
+  </Checklist>
 </template>
 
 <script lang="ts" setup>
@@ -24,7 +24,7 @@ useHead({
   title: 'Fish | Pod Data',
 })
 
-import type { Header } from '~/components/AppChecklist.vue'
+import type { Header } from '~/components/Checklist.vue'
 
 const { getAllFishWithStatus, toggleFish } = useFish()
 const {
@@ -36,7 +36,7 @@ const {
 } = useChecklist(getAllFishWithStatus, toggleFish, 'user_fish')
 
 const headers: Header[] = [
-  { title: 'Name', key: 'name', width: '25%' },
+  { title: 'Name', key: 'name', width: '15%' },
   { title: 'Location', key: 'location', slot: 'location' },
 ]
 

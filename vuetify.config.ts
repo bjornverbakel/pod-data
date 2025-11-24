@@ -1,5 +1,3 @@
-import { VAppBarNavIcon, VMenu, VSelect, VTextarea, VTextField } from "vuetify/components";
-
 export const vuetifyConfig = {
   // Define global component defaults
   defaults: {

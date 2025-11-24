@@ -1,5 +1,5 @@
 <template>
-  <AppChecklist
+  <Checklist
     title="Achievements"
     :items="achievements"
     :loading="loading"
@@ -11,7 +11,7 @@
     <template #icon_url="{ item }">
       <v-img height="60" width="60" class="my-4" :src="item.icon_url" :alt="item.name" />
     </template>
-  </AppChecklist>
+  </Checklist>
 </template>
 
 <script lang="ts" setup>
@@ -19,7 +19,7 @@ useHead({
   title: 'Achievements | Pod Data',
 })
 
-import type { Header } from '~/components/AppChecklist.vue'
+import type { Header } from '~/components/Checklist.vue'
 
 const { getAllAchievementsWithStatus, toggleAchievement } = useAchievements()
 

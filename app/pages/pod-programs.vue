@@ -1,5 +1,5 @@
 <template>
-  <AppChecklist
+  <Checklist
     title="Pod Programs"
     :items="podPrograms"
     :loading="loading"
@@ -15,7 +15,7 @@ useHead({
   title: 'Pod Programs | Pod Data',
 })
 
-import type { Header } from '~/components/AppChecklist.vue'
+import type { Header } from '~/components/Checklist.vue'
 
 const { getAllPodProgramsWithStatus, togglePodProgram } = usePodPrograms()
 const {

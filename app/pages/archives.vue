@@ -1,5 +1,5 @@
 <template>
-  <AppChecklist
+  <Checklist
     title="Archives"
     :items="archives"
     :loading="loading"
@@ -23,7 +23,7 @@ useHead({
   title: 'Archives | Pod Data',
 })
 
-import type { Header } from '~/components/AppChecklist.vue'
+import type { Header } from '~/components/Checklist.vue'
 
 const { getAllArchivesWithStatus, toggleArchive } = useArchives()
 

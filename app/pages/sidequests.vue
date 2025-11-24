@@ -1,5 +1,5 @@
 <template>
-  <AppChecklist
+  <Checklist
     title="Sidequests"
     :items="sidequests"
     :loading="loading"
@@ -26,7 +26,7 @@
       {{ item.client }}
       <span class="text-medium-emphasis">({{ item.location }})</span>
     </template>
-  </AppChecklist>
+  </Checklist>
 </template>
 
 <script lang="ts" setup>
@@ -34,7 +34,7 @@ useHead({
   title: 'Sidequests | Pod Data',
 })
 
-import type { Header } from '~/components/AppChecklist.vue'
+import type { Header } from '~/components/Checklist.vue'
 
 const { getAllSidequestsWithStatus, toggleSidequest } = useSidequests()
 

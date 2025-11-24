@@ -1,5 +1,5 @@
 <template>
-  <AppChecklist
+  <Checklist
     title="Weapons"
     :items="weapons"
     :loading="loading"
@@ -17,7 +17,7 @@ useHead({
   title: 'Weapons | Pod Data',
 })
 
-import type { Header } from '~/components/AppChecklist.vue'
+import type { Header } from '~/components/Checklist.vue'
 
 const { getAllWeaponsWithStatus, toggleWeapon } = useWeapons()
 

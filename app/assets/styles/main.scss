@@ -1,15 +1,25 @@
-@use "sass:color";
-@use "@/assets/styles/_variables.scss" as *;
-@use "@/assets/styles/_mixins.scss" as *;
+@use 'sass:color';
+@use '@/assets/styles/_variables.scss' as *;
+@use '@/assets/styles/_mixins.scss' as *;
 
 // Global styles
 * {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
+}
+
+.font-base {
+  font-family: $font-family-base !important;
+}
+
+.font-mono {
+  font-family: $font-family-mono !important;
+  letter-spacing: 1px !important;
 }
 
 body {
@@ -18,20 +28,27 @@ body {
 }
 
 .v-application {
-  font-family: $font-family-base !important;
+  font-family: $font-family-base;
   color: rgb(var(--v-theme-text)) !important;
-  
-  .text-h1, .text-h2, .text-h3, .text-h4, .text-h5, .text-h6,
-  .v-btn, .v-card-title, .v-list-item-title {
-    font-family: $font-family-base !important;
+
+  .text-h1,
+  .text-h2,
+  .text-h3,
+  .text-h4,
+  .text-h5,
+  .text-h6,
+  .v-btn,
+  .v-card-title,
+  .v-list-item-title {
+    font-family: $font-family-base;
   }
 }
 
 .main-header {
-	text-shadow: 4px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 4px 4px rgba(0, 0, 0, 0.1);
   text-transform: uppercase;
   font-size: 3rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.05;
   letter-spacing: normal;
 }
@@ -39,10 +56,10 @@ body {
 .sub-header {
   text-shadow: 4px 4px rgba(0, 0, 0, 0.1);
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 400;
 }
 
-main {
+body {
   // Custom scrollbar
   ::-webkit-scrollbar {
     width: 14px;
@@ -58,31 +75,31 @@ main {
     border-radius: 0;
     border: 5px solid transparent;
     background-clip: padding-box;
-    
+
     &:hover {
-      background: color.adjust(#47453D, $lightness: 15%);
+      background: color.adjust(#47453d, $lightness: 15%);
       background-clip: padding-box;
       cursor: pointer;
     }
   }
 
-  ::-webkit-scrollbar-button {
+  main ::-webkit-scrollbar-button {
     background: rgb(var(--v-theme-primary));
     border-radius: 0;
     background-clip: padding-box;
     border: 5px solid transparent;
-    
+
     &:hover {
-      background: color.adjust(#47453D, $lightness: 15%);
+      background: color.adjust(#47453d, $lightness: 15%);
       background-clip: padding-box;
       cursor: pointer;
     }
   }
 }
 
-
 th {
   background: rgb(var(--v-theme-primary)) !important;
   color: rgb(var(--v-theme-on-primary)) !important;
   font-weight: bold !important;
+  text-transform: uppercase !important;
 }

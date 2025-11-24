@@ -1,5 +1,26 @@
 <template>
-  <h1 class="main-header">{{ title }}</h1>
+  <div>
+    <h1 class="main-header">{{ title }}</h1>
+    <h2 v-if="subtitle" class="sub-header mt-1">{{ subtitle }}</h2>
+  </div>
+
+  <div class="font-mono text-uppercase">
+    <div class="d-flex justify-space-between mb-1">
+      <span v-if="loading">[STATUS: LOADING...]</span>
+
+      <span v-else-if="$vuetify.display.smAndUp">
+        [STATUS: {{ completionPercent >= 100 ? 'FINISHED' : 'IN_PROGRESS' }}]
+      </span>
+
+      <span>{{ completedCount }} / {{ props.items.length }}</span>
+    </div>
+
+    <v-progress-linear :model-value="completionPercent" color="primary" height="24">
+      <template v-slot:default="{ value }">
+        <span class="text-white"> {{ Math.ceil(value) }}% </span>
+      </template>
+    </v-progress-linear>
+  </div>
 
   <v-alert v-if="error" type="error">
     {{ error }}
@@ -15,7 +36,7 @@
       clearable
       hide-details
       density="comfortable"
-      :max-width="$vuetify.display.smAndUp ? 400 : undefined"
+      :max-width="$vuetify.display.smAndUp ? 300 : undefined"
     />
     <v-switch
       v-model="hideCompleted"
@@ -108,6 +129,7 @@ export interface Header {
 
 const props = defineProps<{
   title: string
+  subtitle?: string
   items: any[]
   loading: boolean
   error: string
@@ -123,6 +145,16 @@ const tableHeaders = computed(() => [
   ...props.headers.map(h => ({ ...h, sortable: false })),
   { title: 'Guide', key: 'guide', width: '10%', sortable: false },
 ])
+
+const completedCount = computed(() => {
+  return props.items.reduce((count, item) => count + (props.isCompleted(item) ? 1 : 0), 0)
+})
+
+const completionPercent = computed(() => {
+  const total = props.items.length
+  if (!total) return 0
+  return (completedCount.value / total) * 100
+})
 
 const search = ref('')
 const hideCompleted = ref(false)
