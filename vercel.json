@@ -1,3 +1,20 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json"
+  "rewrites": [
+    {
+      "source": "/monitor/script.js",
+      "destination": "https://va.vercel-scripts.com/v1/script.js"
+    },
+    {
+      "source": "/monitor/vitals",
+      "destination": "/_vercel/insights"
+    },
+    {
+      "source": "/monitor/speed-insights/script.js",
+      "destination": "https://va.vercel-scripts.com/v1/speed-insights/script.js"
+    },
+    {
+      "source": "/monitor/speed-insights/vitals",
+      "destination": "/_vercel/speed-insights/vitals"
+    }
+  ]
 }
