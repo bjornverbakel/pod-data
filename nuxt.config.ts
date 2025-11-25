@@ -41,9 +41,17 @@ export default defineNuxtConfig({
   app: {
     head: {
       charset: 'utf-16',
-      viewport: 'width=500, initial-scale=1',
+      viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+      title: 'Pod Data',
+      htmlAttrs: {
+        lang: 'en',
+      },
+      bodyAttrs: {
+        class: 'font-base',
+      },
+
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/img/robot-secondary.svg' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
         {
