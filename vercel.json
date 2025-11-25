@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/monitor/:match*",
-      "destination": "https://dns.surf/_vercel/:match*"
+      "destination": "https://poddata.net/_vercel/:match*"
     }
   ]
 }
