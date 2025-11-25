@@ -1,76 +1,43 @@
-# ⚡ Supabase + Nuxt 4 Authentication Starter
+# Pod Data
 
-> A modern and secure authentication boilerplate built with the latest versions of **Nuxt 4** and **Supabase**. Provides out-of-the-box support for user registration and login functionality, ideal for rapidly initializing new full-stack projects.
+This is a completion checklist app for **NieR: Automata**, available at [poddata.net](https://poddata.net).
 
-## 🆕 Changelog
+## Technologies
 
-- Migrated to **Nuxt 4** using the new `nuxt` package
-- Integrated **latest Supabase JavaScript client** (`@supabase/supabase-js`)
-- Switched to **pnpm** as the preferred package manager for faster, disk-efficient installs
+- **Framework**: [Nuxt 4](https://nuxt.com)
+- **Database & Authentication**: [Supabase](https://supabase.com)
+- **UI Library**: [Vuetify](https://vuetifyjs.com)
 
-## 🚀 Live Demonstrations
+## Setup
 
-| Deployment Platform | Live URL                                                                 |
-| ------------------- | ------------------------------------------------------------------------ |
-| Vercel              | [https://supaauth-nuxt4.vercel.app/](https://supaauth-nuxt4.vercel.app/) |
-| NuxtHub             | [https://supaauth.nuxt.dev/](https://supaauth.nuxt.dev/)                 |
+1. **Install dependencies**:
 
-## 🖼️ UI Preview
+   ```bash
+   pnpm install
+   ```
 
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/79358543/229441570-3ba48ca8-8cf3-4fd4-aac7-2cc5eac67a03.png" width="80%" />
-  <br/><br/>
-  <img src="https://user-images.githubusercontent.com/79358543/229441594-e7cbec31-726d-4029-96ba-d7631fd3aef5.gif" width="60%" />
-</div>
+2. **Environment Variables**:
+   Fill in the `.env` file with your own enviroment variables:
 
-## ✅ Key Features
+   ```env
+   SUPABASE_URL=your_supabase_url
+   SUPABASE_KEY=your_supabase_anon_key
+   etc..
+   ```
 
-- 🔐 Email/password-based authentication powered by **Supabase Auth**
-- 💡 Seamless integration with **Nuxt 4 Composition API**
-- 🧱 Minimal and modular architecture, ideal for customization and scaling
-- 📱 Fully responsive design for both mobile and desktop
-- 🧼 Clean, maintainable codebase with best practices in mind
+3. **Run Development Server**:
+   ```bash
+   pnpm dev
+   ```
 
-## ⚙️ Project Setup
+## Resources & Acknowledgements
 
-Ensure you have [Node.js](https://nodejs.org/) and [pnpm](https://pnpm.io) installed.
+- [FextraLife NieR: Automata Wiki](https://nierautomata.wiki.fextralife.com/Nier+Automata+Wiki) - Data & guides
+- [Fandom NieR: Automata Wiki](https://nier.fandom.com/wiki/NieR:Automata) - Data
+- [Steam Community: 100% Guide to NieR:Automata™](https://steamcommunity.com/sharedfiles/filedetails/?id=1690393671) - Data
 
-```bash
-# Install dependencies
-pnpm install
+NieR: Automata is © Square Enix and PlatinumGames. This app is an independent project and is not affiliated with or endorsed by the original creators.
 
-# Start the development server
-pnpm dev
-```
+## License
 
-## 🔧 Supabase Configuration
-
-1. Create a project via [supabase.com](https://supabase.com).
-2. Go to **Project Settings → API** and retrieve your `SUPABASE_URL` and `SUPABASE_ANON_KEY`.
-3. Create a `.env` file in your project root:
-
-```env
-SUPABASE_URL=https://your-project-id.supabase.co
-SUPABASE_ANON_KEY=your-anon-key
-```
-
-## 📚 Documentation
-
-- [Nuxt 4 Documentation](https://nuxt.com/docs)
-- [Supabase Auth Documentation](https://supabase.com/docs/guides/auth)
-- [Supabase Client Reference](https://supabase.com/docs/reference/javascript/introduction)
-
----
-
-## 🧑‍💻 Author
-
-**Sefa Bulak**
-📫 Contact: [zckhtln@icloud.com](mailto:zckhtln@icloud.com)
-🐙 GitHub: [github.com/zackhatlen](https://github.com/zackhatlen)
-🐦 Twitter: [@ZHatlen](https://twitter.com/ZHatlen)
-
----
-
-## 📝 License
-
-This project is released under the [MIT License](LICENSE).
+[MIT](LICENSE)

@@ -108,7 +108,7 @@
               variant="flat"
               :href="item.guide_url"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               @click.stop
             >
               <v-avatar start class="bg-white">

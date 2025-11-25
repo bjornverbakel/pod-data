@@ -9,5 +9,3 @@ dist
 .env.*
 .data
 .vscode
-
-docs/CHEATSHEET.md
