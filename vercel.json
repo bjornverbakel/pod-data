@@ -1,9 +1,3 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
-    {
-      "source": "/monitor/:match*",
-      "destination": "https://poddata.net/_vercel/:match*"
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json"
 }
