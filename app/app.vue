@@ -7,8 +7,8 @@ import { SpeedInsights } from '@vercel/speed-insights/nuxt'
   <v-app>
     <NuxtLayout>
       <!-- Vercel Analytics and Speed Insights -->
-      <Analytics script-src="/monitor/script.js" endpoint="/monitor/vitals" />
-      <SpeedInsights script-src="/monitor/speed-insights/script.js" endpoint="/monitor/speed-insights/vitals" />
+      <Analytics script-src="/monitor/insights/script.js" />
+      <SpeedInsights script-src="/monitor/speed-insights/script.js" />
 
       <!-- Main page -->
       <NuxtPage />

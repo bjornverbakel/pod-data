@@ -1,24 +1,3 @@
 {
-  "rewrites": [
-    {
-      "source": "/monitor/script.js",
-      "destination": "https://va.vercel-scripts.com/v1/script.js"
-    },
-    {
-      "source": "/monitor/vitals/:match*",
-      "destination": "/_vercel/insights/:match*"
-    },
-    {
-      "source": "/monitor/speed-insights/script.js",
-      "destination": "https://va.vercel-scripts.com/v1/speed-insights/script.js"
-    },
-    {
-      "source": "/monitor/speed-insights/vitals",
-      "destination": "/_vercel/speed-insights/vitals"
-    },
-    {
-      "source": "/monitor/speed-insights/vitals/:match*",
-      "destination": "/_vercel/speed-insights/vitals/:match*"
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json"
 }
