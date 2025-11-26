@@ -26,6 +26,18 @@ body {
   @include full-bleed;
 }
 
+.full-bleed-sm {
+  @media (max-width: $breakpoint-sm) {
+    @include full-bleed;
+  }
+}
+
+.full-bleed-md {
+  @media (max-width: $breakpoint-md) {
+    @include full-bleed;
+  }
+}
+
 .text-xs-truncate {
   @include text-xs-truncate;
 }

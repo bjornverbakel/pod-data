@@ -53,7 +53,7 @@
       />
     </div>
 
-    <div v-if="groupBy && groupKeys.length > 0" class="d-flex flex-wrap ga-2 full-bleed">
+    <div v-if="groupBy && groupKeys.length > 0" class="d-flex flex-wrap ga-2 full-bleed-md">
       <v-chip
         class="text-caption min-w-min"
         size="small"
