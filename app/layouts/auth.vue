@@ -1,16 +1,27 @@
 <template>
+  <Header />
+  <NavDrawer />
+
   <v-main>
-    <v-container fluid class="fill-height d-flex align-center justify-center">
-      <v-card max-width="500" width="100%" class="pa-4">
-        <slot />
-        <v-card-text class="text-caption text-center mt-4">
-          This site is authenticated by supabase.com and the Supabase
-          <a target="_blank" href="https://supabase.com/privacy" rel="noreferrer">Privacy Policy</a>
-          and
-          <a target="_blank" href="https://supabase.com/terms" rel="noreferrer">Terms of Service</a>
-          apply.
-        </v-card-text>
-      </v-card>
+    <v-container fluid class="d-flex flex-column ga-12 ga-md-16 pa-0">
+      <slot />
     </v-container>
   </v-main>
 </template>
+
+<script setup lang="ts">
+const drawer = ref(false)
+
+provide('drawer', drawer)
+</script>
+
+<style scoped lang="scss">
+@use '@/assets/styles/_mixins.scss' as *;
+
+.main-content-wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+  @include page-padding;
+  @include h-screen-content;
+}
+</style>

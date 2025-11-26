@@ -5,6 +5,7 @@ export interface Category {
   composable: () => any
   fetchFunction: string
   relationKey: string
+  foreignKey: string
 }
 
 export const categories: Category[] = [
@@ -15,6 +16,7 @@ export const categories: Category[] = [
     composable: useAchievements,
     fetchFunction: 'getAllAchievementsWithStatus',
     relationKey: 'user_achievements',
+    foreignKey: 'achievement_id',
   },
   {
     key: 'endings',
@@ -23,6 +25,7 @@ export const categories: Category[] = [
     composable: useEndings,
     fetchFunction: 'getAllEndingsWithStatus',
     relationKey: 'user_endings',
+    foreignKey: 'ending_id',
   },
   {
     key: 'sidequests',
@@ -31,6 +34,7 @@ export const categories: Category[] = [
     composable: useSidequests,
     fetchFunction: 'getAllSidequestsWithStatus',
     relationKey: 'user_sidequests',
+    foreignKey: 'sidequest_id',
   },
   {
     key: 'pod-programs',
@@ -39,6 +43,7 @@ export const categories: Category[] = [
     composable: usePodPrograms,
     fetchFunction: 'getAllPodProgramsWithStatus',
     relationKey: 'user_pod_programs',
+    foreignKey: 'pod_program_id',
   },
   {
     key: 'weapons',
@@ -47,6 +52,7 @@ export const categories: Category[] = [
     composable: useWeapons,
     fetchFunction: 'getAllWeaponsWithStatus',
     relationKey: 'user_weapons',
+    foreignKey: 'weapon_id',
   },
   {
     key: 'archives',
@@ -55,6 +61,7 @@ export const categories: Category[] = [
     composable: useArchives,
     fetchFunction: 'getAllArchivesWithStatus',
     relationKey: 'user_archives',
+    foreignKey: 'archive_id',
   },
   {
     key: 'enemies',
@@ -63,6 +70,7 @@ export const categories: Category[] = [
     composable: useEnemies,
     fetchFunction: 'getAllEnemiesWithStatus',
     relationKey: 'user_enemies',
+    foreignKey: 'enemy_id',
   },
   {
     key: 'fish',
@@ -71,6 +79,7 @@ export const categories: Category[] = [
     composable: useFish,
     fetchFunction: 'getAllFishWithStatus',
     relationKey: 'user_fish',
+    foreignKey: 'fish_id',
   },
   {
     key: 'novels',
@@ -79,5 +88,6 @@ export const categories: Category[] = [
     composable: useNovels,
     fetchFunction: 'getAllNovelsWithStatus',
     relationKey: 'user_novels',
+    foreignKey: 'novel_id',
   },
 ]

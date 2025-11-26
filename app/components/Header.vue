@@ -12,53 +12,137 @@
 
     <template v-slot:append>
       <!-- Anonymous user: Show chip + Sign up button -->
-      <div v-if="user && isAnonymous" class="d-flex align-center ga-2">
-        <v-chip color="warning" size="small" prepend-icon="mdi-incognito"> Guest</v-chip>
+      <div v-if="isAnonymous" class="d-flex align-center ga-4 mr-2">
+        <v-chip color="warning" size="small" prepend-icon="mdi-incognito"> Guest </v-chip>
         <v-btn
-          v-if="$vuetify.display.smAndUp"
+          v-if="$vuetify.display.mdAndUp"
           color="secondary"
           to="/register"
           prepend-icon="mdi-account-plus"
         >
           Sign up
         </v-btn>
-        <v-btn v-else color="secondary" to="/register" icon="mdi-account-plus" />
-        <DevOnly>
-          <v-btn color="secondary" @click="logout" icon="mdi-logout" :loading="loading"></v-btn>
-        </DevOnly>
       </div>
 
-      <!-- Normal logged in user: Show profile -->
-      <div v-else-if="user" class="d-flex align-center ga-2">
-        <!-- Desktop: Show email and logout button -->
-        <div v-if="$vuetify.display.mdAndUp" class="d-flex align-center ga-2">
-          <span class="text-body-2">
-            <v-icon start icon="mdi-account" />
-            {{ profile?.username || user.email }}
-          </span>
-          <v-btn color="secondary" @click="logout" icon="mdi-logout" :loading="loading"></v-btn>
-        </div>
+      <!-- Normal logged in user: Show action menu -->
+      <div v-if="user">
+        <v-btn icon="mdi-dots-vertical" id="user-menu-trigger" variant="text"></v-btn>
 
-        <!-- Mobile: Show menu -->
-        <v-menu v-else>
-          <template v-slot:activator="{ props }">
-            <v-btn icon="mdi-account-circle" v-bind="props"></v-btn>
-          </template>
-          <v-list style="max-width: 400px">
-            <v-list-item prepend-icon="mdi-account" title="Logged in as">
-              <v-list-item-subtitle class="text-body-1">
+        <!-- Desktop Menu -->
+        <v-menu
+          v-model="menu"
+          activator="#user-menu-trigger"
+          v-if="mdAndUp"
+          :close-on-content-click="false"
+        >
+          <v-list width="250" class="pt-0">
+            <v-list-item v-if="isAnonymous" class="py-4">
+              <template v-slot:prepend>
+                <v-avatar color="primary" icon="mdi-incognito"></v-avatar>
+              </template>
+              <v-list-item-title v-if="isAnonymous" class="text-h6"> Guest User </v-list-item-title>
+              <v-list-item-subtitle>Logged in</v-list-item-subtitle>
+            </v-list-item>
+            <v-list-item v-else class="py-4">
+              <template v-slot:prepend>
+                <v-avatar color="primary" icon="mdi-account"></v-avatar>
+              </template>
+              <v-list-item-title class="text-h6">
                 {{ profile?.username || user.email }}
-              </v-list-item-subtitle>
-            </v-list-item>
-            <v-divider class="my-2" />
-            <v-list-item @click="logout">
-              <v-list-item-title>
-                <v-icon start>mdi-logout</v-icon>
-                Logout
               </v-list-item-title>
+              <v-list-item-subtitle>Logged in</v-list-item-subtitle>
             </v-list-item>
+
+            <v-divider class="my-2"></v-divider>
+
+            <v-list-item
+              to="/settings"
+              prepend-icon="mdi-cog"
+              title="Settings"
+              @click="menu = false"
+            ></v-list-item>
+
+            <v-list-item
+              v-if="isAnonymous"
+              to="/register"
+              prepend-icon="mdi-account-plus"
+              title="Sign up"
+              :loading="loading"
+            />
+            <v-list-item
+              v-else-if="user"
+              @click="(logout(), (menu = false))"
+              prepend-icon="mdi-logout"
+              title="Logout"
+              :loading="loading"
+            />
+            <DevOnly>
+              <v-list-item
+                @click="(logout(), (menu = false))"
+                prepend-icon="mdi-logout"
+                title="Logout"
+                :loading="loading"
+              />
+            </DevOnly>
           </v-list>
         </v-menu>
+
+        <!-- Mobile Bottom Sheet -->
+        <v-bottom-sheet v-model="menu" activator="#user-menu-trigger" v-else>
+          <v-card>
+            <v-list class="pa-0">
+              <v-list-item v-if="isAnonymous" class="py-4">
+                <template v-slot:prepend>
+                  <v-avatar color="primary" icon="mdi-incognito"></v-avatar>
+                </template>
+                <v-list-item-title v-if="isAnonymous" class="text-h6">
+                  Guest User
+                </v-list-item-title>
+                <v-list-item-subtitle>Logged in</v-list-item-subtitle>
+              </v-list-item>
+              <v-list-item v-else class="py-4">
+                <template v-slot:prepend>
+                  <v-avatar color="primary" icon="mdi-account"></v-avatar>
+                </template>
+                <v-list-item-title class="text-h6">
+                  {{ profile?.username || user.email }}
+                </v-list-item-title>
+                <v-list-item-subtitle>Logged in</v-list-item-subtitle>
+              </v-list-item>
+
+              <v-divider class="mb-2"></v-divider>
+
+              <v-list-item
+                to="/settings"
+                prepend-icon="mdi-cog"
+                title="Settings"
+                @click="menu = false"
+              ></v-list-item>
+              <v-list-item
+                v-if="isAnonymous"
+                to="/register"
+                prepend-icon="mdi-account-plus"
+                title="Sign up"
+                :loading="loading"
+              />
+              <v-list-item
+                v-else-if="user"
+                @click="(logout(), (menu = false))"
+                prepend-icon="mdi-logout"
+                title="Logout"
+                :loading="loading"
+              />
+              <DevOnly>
+                <v-list-item
+                  @click="(logout(), (menu = false))"
+                  prepend-icon="mdi-logout"
+                  title="Logout"
+                  :loading="loading"
+                />
+              </DevOnly>
+            </v-list>
+          </v-card>
+        </v-bottom-sheet>
       </div>
 
       <!-- No user at all: Show login button -->
@@ -70,11 +154,13 @@
 </template>
 
 <script setup lang="ts">
+const { mdAndUp } = useDisplay()
 const user = useSupabaseUser()
 const { profile } = useProfile()
 const { isAnonymous } = useAuth()
 const client = useSupabaseClient()
 const loading = ref(false)
+const menu = ref(false)
 
 // Access drawer from layout
 const drawer = inject<Ref<boolean>>('drawer')
@@ -89,6 +175,7 @@ const logout = async () => {
   loading.value = true
   const { error } = await client.auth.signOut()
   loading.value = false
+  navigateTo('/')
   if (error) {
     alert('Something went wrong!')
   }
@@ -101,9 +188,12 @@ const logout = async () => {
   outline-offset: 2px;
 }
 
-@media (max-width: 350px) {
+@media (max-width: 400px) {
   .app-logo {
     display: none;
   }
+}
+
+@media (max-width: 200px) {
 }
 </style>

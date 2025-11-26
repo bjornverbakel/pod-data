@@ -37,28 +37,23 @@
         :to="`/${category.key}`"
       />
 
-      <div v-if="mdAndUp" class="d-flex align-center flex-column pa-4 ga-4 mt-auto">
-        <v-btn
-          icon="mdi-github"
-          href="https://github.com/bjornverbakel/pod-data"
-          target="_blank"
-          variant="plain"
-        >
-          <v-icon size="40" icon="mdi-github" />
-        </v-btn>
-        <v-divider class="w-100" />
-        <p class="text-caption text-medium-emphasis">
-          Pod Data is an unofficial checklist for tracking your completion progress in
-          <em>NieR: Automata</em>.
-        </p>
-        <div class="d-flex ga-2 text-body-2 w-100">
+      <div class="mt-auto">
+        <div v-if="mdAndUp" class="d-flex align-center flex-column pa-4 ga-4">
           <v-btn
+            icon="mdi-github"
+            href="https://github.com/bjornverbakel/pod-data"
+            target="_blank"
             variant="plain"
-            density="compact"
-            class="text-medium-emphasis text-decoration-none pa-1"
           >
-            Contact
+            <v-icon size="40" icon="mdi-github" />
           </v-btn>
+          <v-divider class="w-100" />
+          <p class="text-caption text-medium-emphasis">
+            Pod Data is an unofficial checklist for tracking your completion progress in
+            <em>NieR: Automata</em>.
+          </p>
+        </div>
+        <div class="d-flex ga-2 text-body-2 w-100 justify-center pb-4">
           <v-btn
             variant="plain"
             density="compact"

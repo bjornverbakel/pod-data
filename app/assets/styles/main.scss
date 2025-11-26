@@ -132,28 +132,6 @@ li {
   transform: scaleX(1);
 }
 
-// body {
-//   font-family: $font-family-base;
-//   color: rgb(var(--v-theme-text)) !important;
-// }
-
-// .v-application {
-//   font-family: $font-family-base;
-//   color: rgb(var(--v-theme-text)) !important;
-
-//   .text-h1,
-//   .text-h2,
-//   .text-h3,
-//   .text-h4,
-//   .text-h5,
-//   .text-h6,
-//   .v-btn,
-//   .v-card-title,
-//   .v-list-item-title {
-//     font-family: $font-family-base;
-//   }
-// }
-
 .section-spacing {
   flex-direction: column;
   display: flex;
@@ -164,6 +142,17 @@ li {
   flex-direction: column;
   display: flex;
   gap: 16px;
+}
+
+.text-truncate-none {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+}
+
+.text-truncate-wrap {
+  white-space: wrap !important;
+  word-wrap: normal !important;
 }
 
 .main-header {
@@ -207,7 +196,7 @@ body {
     }
   }
 
-  ::-webkit-scrollbar-button {
+  main ::-webkit-scrollbar-button {
     background: color.adjust(#47453d, $lightness: 10%);
     border-radius: 0;
     background-clip: padding-box;
