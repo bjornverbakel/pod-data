@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-8 d-flex flex-column ga-4">
+  <section class="section-spacing">
     <div>
       <h1 class="main-header">Pod Data</h1>
       <h2 class="sub-header mt-1">Unofficial completion checklist for NieR: Automata</h2>
@@ -12,43 +12,38 @@
     </p>
 
     <v-btn class="w-fit" variant="flat" to="/about">Read More</v-btn>
-  </div>
+  </section>
 
-  <h1 class="main-header">Overall Progress</h1>
+  <section class="section-spacing">
+    <h1 class="main-header">Overall Progress</h1>
 
-  <AppAlert
-    v-if="error"
-    type="error"
-    class="mb-4"
-    :message="error"
-    :closable="false"
-    @clear="error = ''"
-  />
+    <AppAlert v-if="error" type="error" :message="error" :closable="false" @clear="error = ''" />
 
-  <div class="dashboard-grid">
-    <v-skeleton-loader v-if="loading" v-for="n in 9" type="article" height="156" />
+    <div class="dashboard-grid">
+      <v-skeleton-loader v-if="loading" v-for="n in 9" type="article" height="156" />
 
-    <v-card v-else v-for="category in categoryStats" :key="category.key" :to="`/${category.key}`">
-      <div class="pa-4 pb-2">
-        <v-icon size="32">{{ category.icon }}</v-icon>
-      </div>
-      <v-card-title class="d-flex align-center justify-space-between ga-2">
-        <span class="text-truncate">{{ category.name }}</span>
-        <v-chip size="small" variant="flat" class="min-w-min">
-          {{ category.completed }} / {{ category.total }}
-        </v-chip>
-      </v-card-title>
+      <v-card v-else v-for="category in categoryStats" :key="category.key" :to="`/${category.key}`">
+        <div class="pa-4 pb-2">
+          <v-icon size="32">{{ category.icon }}</v-icon>
+        </div>
+        <v-card-title class="d-flex align-center justify-space-between ga-2">
+          <span class="text-truncate">{{ category.name }}</span>
+          <v-chip size="small" variant="flat" class="min-w-min">
+            {{ category.completed }} / {{ category.total }}
+          </v-chip>
+        </v-card-title>
 
-      <v-card-text>
-        <v-progress-linear
-          :model-value="category.progress"
-          :color="category.progress === 100 ? 'success' : 'primary'"
-          height="8"
-        />
-        <div class="text-caption mt-2">{{ Math.round(category.progress) }}% Complete</div>
-      </v-card-text>
-    </v-card>
-  </div>
+        <v-card-text>
+          <v-progress-linear
+            :model-value="category.progress"
+            :color="category.progress === 100 ? 'success' : 'primary'"
+            height="8"
+          />
+          <div class="text-caption mt-2">{{ Math.round(category.progress) }}% Complete</div>
+        </v-card-text>
+      </v-card>
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">

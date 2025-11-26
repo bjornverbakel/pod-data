@@ -5,7 +5,7 @@
   <v-main>
     <v-container
       fluid
-      class="main-content h-screen-content py-8 pa-sm-8 pa-md-16 d-flex flex-column ga-4 ga-md-6"
+      class="main-content h-screen-content py-8 pa-sm-8 pa-md-16 d-flex flex-column ga-12 ga-md-16"
     >
       <slot />
     </v-container>

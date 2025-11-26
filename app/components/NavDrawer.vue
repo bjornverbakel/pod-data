@@ -6,40 +6,38 @@
     :temporary="isTemporary"
     :permanent="!isTemporary"
   >
-    <nav class="d-flex flex-column h-100">
-      <v-list density="compact" nav>
-        <v-list-item prepend-icon="mdi-home" title="Home" to="/" />
-        <v-list-item prepend-icon="mdi-information" title="About" to="/about" />
+    <v-list density="compact" nav class="overflow-y-auto h-100 d-flex flex-column">
+      <v-list-item prepend-icon="mdi-home" title="Home" to="/" />
+      <v-list-item prepend-icon="mdi-information" title="About" to="/about" />
 
-        <v-list-subheader>General</v-list-subheader>
-        <v-list-item
-          v-for="category in generalCategories"
-          :key="category.key"
-          :prepend-icon="category.icon"
-          :title="category.name"
-          :to="`/${category.key}`"
-        />
+      <v-list-subheader>General</v-list-subheader>
+      <v-list-item
+        v-for="category in generalCategories"
+        :key="category.key"
+        :prepend-icon="category.icon"
+        :title="category.name"
+        :to="`/${category.key}`"
+      />
 
-        <v-list-subheader>Equipment</v-list-subheader>
-        <v-list-item
-          v-for="category in equipmentCategories"
-          :key="category.key"
-          :prepend-icon="category.icon"
-          :title="category.name"
-          :to="`/${category.key}`"
-        />
+      <v-list-subheader>Equipment</v-list-subheader>
+      <v-list-item
+        v-for="category in equipmentCategories"
+        :key="category.key"
+        :prepend-icon="category.icon"
+        :title="category.name"
+        :to="`/${category.key}`"
+      />
 
-        <v-list-subheader>Intel</v-list-subheader>
-        <v-list-item
-          v-for="category in intelCategories"
-          :key="category.key"
-          :prepend-icon="category.icon"
-          :title="category.name"
-          :to="`/${category.key}`"
-        />
-      </v-list>
+      <v-list-subheader>Intel</v-list-subheader>
+      <v-list-item
+        v-for="category in intelCategories"
+        :key="category.key"
+        :prepend-icon="category.icon"
+        :title="category.name"
+        :to="`/${category.key}`"
+      />
 
-      <div class="d-flex align-center flex-column pa-4 ga-4 mt-auto">
+      <div v-if="mdAndUp" class="d-flex align-center flex-column pa-4 ga-4 mt-auto">
         <v-btn
           icon="mdi-github"
           href="https://github.com/bjornverbakel/pod-data"
@@ -71,12 +69,12 @@
           </v-btn>
         </div>
       </div>
-    </nav>
+    </v-list>
   </v-navigation-drawer>
 </template>
 
 <script setup lang="ts">
-const { lgAndUp } = useDisplay()
+const { lgAndUp, mdAndUp } = useDisplay()
 
 const drawerToggle = inject<Ref<boolean>>('drawer')!
 
