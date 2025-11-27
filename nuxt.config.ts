@@ -1,7 +1,13 @@
 import { vuetifyConfig } from './vuetify.config'
 
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/supabase', 'vuetify-nuxt-module', '@nuxtjs/turnstile'],
+  modules: [
+    '@nuxtjs/supabase',
+    'vuetify-nuxt-module',
+    '@nuxtjs/turnstile',
+    '@nuxtjs/seo',
+    'nuxt-skew-protection',
+  ],
 
   runtimeConfig: {
     turnstile: {
@@ -36,6 +42,19 @@ export default defineNuxtConfig({
 
   imports: {
     dirs: ['composables/auth', 'composables/common', 'composables/game'],
+  },
+
+  skewProtection: {
+    checkForUpdateStrategy: 'polling',
+  },
+
+  experimental: {
+    checkOutdatedBuildInterval: 5 * 60 * 1000, // 5 minutes
+  },
+
+  site: {
+    url: process.env.SITE_URL || 'http://localhost:3000',
+    name: process.env.SITE_NAME || 'Pod Data',
   },
 
   app: {

@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
   const client = useSupabaseClient()
 
-  // Prefer checking the Supabase session (works on server and client)
+  // Prefer checking the Supabase session
   try {
     const { data } = await client.auth.getSession()
     if (data?.session) return
