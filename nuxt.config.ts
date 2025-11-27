@@ -53,8 +53,8 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: process.env.SITE_URL || 'http://localhost:3000',
-    name: process.env.SITE_NAME || 'Pod Data',
+    url: 'http://poddata.net',
+    name: 'Pod Data',
   },
 
   app: {
