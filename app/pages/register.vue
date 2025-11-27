@@ -1,75 +1,77 @@
 <template>
-  <div class="d-flex justify-center">
-    <v-card class="pa-12 d-flex flex-column ga-8" width="600" outlined>
-      <v-card-title class="text-h4 py-0">
-        {{ isAnonymous ? 'Create Your Account' : 'Sign up' }}
-      </v-card-title>
+  <div class="d-flex justify-center auth-main-content h-screen-content align-center">
+    <v-card class="d-flex flex-column justify-center" width="600">
+      <div class="section-spacing pa-4 pa-sm-16">
+        <v-card-title class="text-h4 pa-0 text-truncate-wrap">
+          {{ isAnonymous ? 'Create Your Account' : 'Sign up' }}
+        </v-card-title>
 
-      <v-form class="d-flex flex-column ga-4" @submit.prevent="handleSignUp">
-        <AppAlert
-          v-if="isAnonymous"
-          type="info"
-          message="You're currently in Guest Mode. Sign up to secure your progress!"
-          :closable="false"
-        />
+        <v-form class="d-flex flex-column ga-4" @submit.prevent="handleSignUp">
+          <AppAlert
+            v-if="isAnonymous"
+            type="info"
+            message="You're currently in Guest Mode. Sign up to secure your progress!"
+            :closable="false"
+          />
 
-        <AppAlert
-          v-if="feedback.message"
-          v-model:message="feedback.message"
-          :type="feedback.type"
-        />
+          <AppAlert
+            v-if="feedback.message"
+            v-model:message="feedback.message"
+            :type="feedback.type"
+          />
 
-        <v-text-field
-          v-model="username"
-          prepend-inner-icon="mdi-account"
-          label="Username"
-          type="text"
-        />
+          <v-text-field
+            v-model="username"
+            prepend-inner-icon="mdi-account"
+            label="Username"
+            type="text"
+          />
 
-        <v-text-field
-          v-model="email"
-          prepend-inner-icon="mdi-email"
-          label="Email address"
-          type="email"
-        />
+          <v-text-field
+            v-model="email"
+            prepend-inner-icon="mdi-email"
+            label="Email address"
+            type="email"
+          />
 
-        <v-text-field
-          v-model="password"
-          prepend-inner-icon="mdi-lock"
-          label="Password"
-          type="password"
-        />
+          <v-text-field
+            v-model="password"
+            prepend-inner-icon="mdi-lock"
+            label="Password"
+            type="password"
+          />
 
-        <NuxtTurnstile v-model="token" class="mt-2 mx-auto" />
+          <NuxtTurnstile v-model="token" class="mt-2 mx-auto" />
 
-        <v-btn type="submit" color="primary" class="mt-4" block :loading="loading"> Sign up </v-btn>
-      </v-form>
+          <v-btn type="submit" color="primary" block :loading="loading"> Sign up </v-btn>
+        </v-form>
 
-      <div v-if="!isAnonymous" class="d-flex align-center">
-        <v-divider />
-        <span class="mx-4">Or</span>
-        <v-divider />
-      </div>
+        <div v-if="!isAnonymous" class="d-flex align-center">
+          <v-divider />
+          <span class="mx-4">Or</span>
+          <v-divider />
+        </div>
 
-      <v-btn
-        v-if="!isAnonymous"
-        @click="handleAnonymousSignIn"
-        variant="tonal"
-        block
-        :loading="anonymousLoading"
-      >
-        Continue as Guest
-      </v-btn>
+        <v-btn
+          v-if="!isAnonymous"
+          @click="handleAnonymousSignIn"
+          variant="tonal"
+          block
+          :loading="anonymousLoading"
+        >
+          <span class="text-truncate-wrap">Continue as Guest</span>
+        </v-btn>
 
-      <div class="text-center text-body-2 text-medium-emphasis">
-        <p>
-          Already have an account?
-          <NuxtLink
-            :to="{ path: '/login', query: route.query }"
-            class="text-decoration-none text-primary"
-            >Log in</NuxtLink
-          >
-        </p>
+        <div class="text-center text-body-2 text-medium-emphasis">
+          <p>
+            Already have an account?
+            <NuxtLink
+              :to="{ path: '/login', query: route.query }"
+              class="text-decoration-none text-primary"
+              >Log in</NuxtLink
+            >
+          </p>
+        </div>
       </div>
     </v-card>
   </div>
@@ -79,6 +81,8 @@
 useHead({
   title: 'Register | Pod Data',
 })
+
+definePageMeta({ authLayout: true })
 
 const { isAnonymous, register, signInAnonymously } = useAuth()
 const username = ref('')

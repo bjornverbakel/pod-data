@@ -76,7 +76,7 @@
               title="Logout"
               :loading="loading"
             />
-            <DevOnly>
+            <DevOnly v-if="isAnonymous">
               <v-list-item
                 @click="(logout(), (menu = false))"
                 prepend-icon="mdi-logout"
@@ -132,7 +132,7 @@
                 title="Logout"
                 :loading="loading"
               />
-              <DevOnly>
+              <DevOnly v-if="isAnonymous">
                 <v-list-item
                   @click="(logout(), (menu = false))"
                   prepend-icon="mdi-logout"

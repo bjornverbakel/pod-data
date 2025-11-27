@@ -3,7 +3,7 @@
   <NavDrawer />
 
   <v-main>
-    <v-container fluid class="main-content-wrapper d-flex flex-column ga-12 ga-md-16">
+    <v-container fluid :class="containerClass">
       <slot />
     </v-container>
   </v-main>
@@ -13,6 +13,19 @@
 const drawer = ref(false)
 
 provide('drawer', drawer)
+
+const route = useRoute()
+const isAuthLayout = computed(() => !!route.meta?.authLayout)
+
+const containerClass = computed(() => {
+  const base = ['d-flex', 'flex-column', 'ga-12', 'ga-md-16']
+  if (isAuthLayout.value) {
+    base.push('pa-0')
+  } else {
+    base.unshift('main-content-wrapper')
+  }
+  return base
+})
 </script>
 
 <style scoped lang="scss">

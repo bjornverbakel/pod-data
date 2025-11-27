@@ -1,7 +1,8 @@
 <template>
-  <div class="d-flex justify-center">
-    <v-card class="pa-12 d-flex flex-column ga-8" width="600" outlined>
-      <v-card-title class="text-h4 py-0">New password</v-card-title>
+  <div class="d-flex justify-center auth-main-content h-screen-content align-center">
+    <v-card class="d-flex flex-column justify-center" width="600">
+      <div class="section-spacing pa-4 pa-sm-16"></div>
+      <v-card-title class="text-h4 py-0 text-truncate-wrap">New password</v-card-title>
 
       <v-form class="d-flex flex-column ga-4" @submit.prevent="updatepassword">
         <AppAlert
@@ -12,23 +13,19 @@
 
         <v-text-field
           v-model="password"
+          prepend-inner-icon="mdi-lock"
           label="Password"
           type="password"
-          variant="outlined"
-          class="mb-3"
         />
 
         <v-text-field
           v-model="passwordConfirm"
+          prepend-inner-icon="mdi-lock"
           label="Repeat password"
           type="password"
-          variant="outlined"
-          class="mb-3"
         />
 
-        <v-btn type="submit" class="mt-4" color="primary" block :loading="loading">
-          Reset Password
-        </v-btn>
+        <v-btn type="submit" color="primary" block :loading="loading"> Reset Password </v-btn>
       </v-form>
     </v-card>
   </div>
@@ -38,6 +35,8 @@
 useHead({
   title: 'New Password | Pod Data',
 })
+
+definePageMeta({ authLayout: true })
 
 const password = ref('')
 const passwordConfirm = ref('')

@@ -42,6 +42,10 @@ body {
   @include text-xs-truncate;
 }
 
+.h-screen-content {
+  @include h-screen-content;
+}
+
 .h-fit {
   height: fit-content !important;
 }
@@ -112,6 +116,18 @@ li {
   color: rgb(var(--v-theme-primary));
   position: relative;
   text-decoration: none;
+}
+
+.auth-main-content {
+  @media (max-width: $breakpoint-sm) {
+    @include h-screen-content;
+    display: flex;
+    align-items: normal !important;
+  }
+}
+
+.page-padding {
+  @include page-padding;
 }
 
 .custom-link::before {

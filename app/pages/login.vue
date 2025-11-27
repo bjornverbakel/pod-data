@@ -1,7 +1,7 @@
 <template>
-  <div class="d-flex justify-center auth-main-content">
-    <v-card class="pa-8" width="600" outlined>
-      <div class="section-spacing">
+  <div class="d-flex justify-center auth-main-content h-screen-content align-center">
+    <v-card class="d-flex flex-column justify-center" width="600">
+      <div class="section-spacing pa-4 pa-sm-16">
         <v-card-title class="text-h4 pa-0 text-truncate-wrap">Log in</v-card-title>
 
         <v-form class="d-flex flex-column ga-4" @submit.prevent="handleLogin">
@@ -40,7 +40,7 @@
           </div>
 
           <v-expand-transition>
-            <div v-if="showCaptcha" class="my-2 mx-auto text-center">
+            <div v-if="showCaptcha" class="mx-auto text-center">
               <div class="text-caption text-warning mb-1">
                 Security check required due to multiple failed attempts.
               </div>
@@ -87,7 +87,7 @@ useHead({
   title: 'Login | Pod Data',
 })
 
-setPageLayout('default')
+definePageMeta({ authLayout: true })
 
 const { isAnonymous, login, signInAnonymously } = useAuth()
 const user = useSupabaseUser()
