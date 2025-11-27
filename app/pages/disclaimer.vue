@@ -42,7 +42,7 @@
 
 <script lang="ts" setup>
 useHead({
-  title: 'Disclaimer | Pod Data',
+  title: 'Disclaimer',
 })
 </script>
 

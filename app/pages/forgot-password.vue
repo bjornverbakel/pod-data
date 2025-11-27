@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Forgot Password | Pod Data',
+  title: 'Forgot Password',
 })
 
 definePageMeta({ authLayout: true })

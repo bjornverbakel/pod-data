@@ -12,7 +12,7 @@
 
 <script lang="ts" setup>
 useHead({
-  title: 'Novels | Pod Data',
+  title: 'Novels',
 })
 
 import type { Header } from '~/components/Checklist.vue'

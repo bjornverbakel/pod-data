@@ -20,7 +20,7 @@
 
 <script lang="ts" setup>
 useHead({
-  title: 'Archives | Pod Data',
+  title: 'Archives',
 })
 
 import type { Header } from '~/components/Checklist.vue'

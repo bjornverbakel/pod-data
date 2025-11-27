@@ -60,10 +60,8 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Settings | Pod Data',
+  title: 'Settings',
 })
-
-definePageMeta({ middleware: 'auth' })
 
 const { exportData, importData } = useDataManagement()
 

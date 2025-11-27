@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'New Password | Pod Data',
+  title: 'New Password',
 })
 
 definePageMeta({ authLayout: true })

@@ -48,16 +48,17 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Pod Data',
+  // Will be auto added by Nuxt SEO
+  title: '',
 })
 
-defineOgImageComponent('Nuxt', {
-  title: 'Nuxt Commerce',
-  description: 'A high-performance, server-rendered E-commerce app built with Nuxt & Shopify',
-  theme: '#4ADE80',
-  headline: '',
-  colorMode: 'dark',
-})
+// defineOgImageComponent('Nuxt', {
+//   title: 'Nuxt Commerce',
+//   description: 'A high-performance, server-rendered E-commerce app built with Nuxt & Shopify',
+//   theme: '#4ADE80',
+//   headline: '',
+//   colorMode: 'dark',
+// })
 
 const loading = ref(true)
 const error = ref('')

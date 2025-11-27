@@ -32,8 +32,9 @@ export default defineNuxtConfig({
 
   supabase: {
     redirectOptions: {
-      login: '*',
-      callback: '*',
+      login: '/login',
+      callback: '/confirm',
+      include: ['/settings'],
     },
   },
 
@@ -54,7 +55,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: 'http://poddata.net',
+    url: 'https://poddata.net',
     name: 'Pod Data',
   },
 

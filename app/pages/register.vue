@@ -79,7 +79,7 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Register | Pod Data',
+  title: 'Register',
 })
 
 definePageMeta({ authLayout: true })

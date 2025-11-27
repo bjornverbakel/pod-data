@@ -31,7 +31,7 @@
 
 <script lang="ts" setup>
 useHead({
-  title: 'Sidequests | Pod Data',
+  title: 'Sidequests',
 })
 
 import type { Header } from '~/components/Checklist.vue'

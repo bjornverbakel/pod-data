@@ -112,6 +112,10 @@
 </template>
 
 <script lang="ts" setup>
+useHead({
+  title: 'About',
+})
+
 const DISCORD_ID = '530835767551983646'
 
 const { data: discordData } = await useFetch<any>(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`)

@@ -14,7 +14,7 @@
 
 <script lang="ts" setup>
 useHead({
-  title: 'Weapons | Pod Data',
+  title: 'Weapons',
 })
 
 import type { Header } from '~/components/Checklist.vue'
