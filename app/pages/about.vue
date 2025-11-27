@@ -32,7 +32,7 @@
           <div class="pa-2 d-flex align-center">
             <div class="position-relative mr-3">
               <v-avatar color="white" class="discord-avatar">
-                <v-img :src="avatarUrl" alt="Avatar"></v-img>
+                <v-img :src="avatarUrl" alt="Avatar" />
               </v-avatar>
               <div class="status-indicator" :class="`bg-${statusColor}`" />
             </div>
@@ -42,8 +42,10 @@
             </div>
           </div>
           <v-divider vertical></v-divider>
-          <v-avatar size="32" class="ma-2 rounded-0" color="transparent">
-            <v-img src="/img/discord-white.svg" alt="Discord Logo" :cover="false"></v-img>
+          <v-avatar class="ma-2 rounded-0" color="transparent">
+            <v-icon size="32">
+              <v-img src="/img/discord-white.svg" alt="Discord Logo" :cover="false" />
+            </v-icon>
           </v-avatar>
         </v-card>
       </NuxtLink>
