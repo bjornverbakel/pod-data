@@ -44,6 +44,8 @@ More instructions can be found [here](/docs/CHEATSHEET.md).
 
 NieR: Automata is © Square Enix and PlatinumGames. This app is an independent project and is not affiliated with or endorsed by the original creators.
 
+This project was initialized using [supaAuth](https://github.com/zackha/supaAuth) © 2023 Zack Hatlen, provided under the MIT License.
+
 ## License
 
 [MIT](LICENSE)
