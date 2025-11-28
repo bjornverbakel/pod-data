@@ -16,17 +16,26 @@
           <p class="text-body-1">
             A link has been sent to <strong>{{ email }}</strong
             >. Please check your inbox to verify your email address and activate your account. This
-            link will expire in 1 hour. You may need to check your spam folder.
+            link will expire in 1 hour.
           </p>
 
-          <div class="d-flex align-center flex-wrap ga-2">
+          <div class="d-flex align-center ga-2 text-warning">
+            <v-icon icon="mdi-folder-alert-outline" />
+            <p>You may need to check your spam folder.</p>
+          </div>
+
+          <v-divider class="my-4" />
+
+          <div class="d-flex align-center ga-2">
             <span class="text-body-2">Didn't receive an email?</span>
+
             <v-btn
               variant="text"
               color="primary"
-              class="px-0"
+              density="comfortable"
               :loading="resendLoading"
               @click="handleResend"
+              class="w-fit"
             >
               Resend
             </v-btn>
@@ -197,15 +206,6 @@ const handleSignUp = async () => {
     // Handle specific Supabase error messages
     if (error.message.includes('Unable to validate email address')) {
       feedback.value = { message: 'Please enter a valid email address.', type: 'error' }
-    } else if (
-      error.message.includes('User already registered') ||
-      error.message.includes('A user with this email address has already been registered')
-    ) {
-      // Prevent email enumeration: Show success message even if user exists
-      registrationSuccess.value = true
-      feedback.value = { message: '', type: 'info' } // Clear feedback as we show the success view
-    } else {
-      feedback.value = { message: error.message, type: 'error' }
     }
   } else {
     // Success message for both conversion and new signup

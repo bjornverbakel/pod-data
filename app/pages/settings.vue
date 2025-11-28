@@ -56,7 +56,11 @@
       </div>
     </v-card>
 
-    <v-card class="pa-0 pa-sm-8 mt-8" :color="$vuetify.display.smAndUp ? undefined : 'background'">
+    <v-card
+      v-if="!isAnonymous && user"
+      class="pa-0 pa-sm-8 mt-8"
+      :color="$vuetify.display.smAndUp ? undefined : 'background'"
+    >
       <div class="section-spacing-sm">
         <v-card-title class="pa-0 text-truncate-wrap">Account</v-card-title>
         <v-card-text class="pa-0"> Update your profile information. </v-card-text>
@@ -81,6 +85,8 @@ useHead({
 })
 
 const { exportData, importData } = useDataManagement()
+const { isAnonymous } = useAuth()
+const user = useSupabaseUser()
 
 const exporting = ref(false)
 const importing = ref(false)

@@ -54,13 +54,13 @@ npx supabase db reset
 
 ## Database Management
 
-### Apply Schema (Structure)
+### Apply migration
 
 ```bash
-npx supabase db query --file db_schema.sql
+npx supabase migration up
 ```
 
-Applies the database structure from `db_schema.sql`.
+Applies the database migrations.
 
 ---
 
