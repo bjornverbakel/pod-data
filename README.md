@@ -17,11 +17,11 @@ This is a completion checklist app for **NieR: Automata**, available at [poddata
    ```
 
 2. **Environment Variables**:
-   Fill in the `.env` file with your own enviroment variables:
+   Create a `.env` file in your project root:
 
    ```env
    SUPABASE_PROJECT_ID="your_supabase_project_id"
-   SUPABASE_URL="your_supabase_url"
+   SUPABASE_URL="https://your-project-id.supabase.co"
    SUPABASE_KEY="your_supabase_key"
 
    TURNSTILE_SITEKEY="your_turnstile_site_key"
@@ -48,4 +48,4 @@ This project was initialized using [supaAuth](https://github.com/zackha/supaAuth
 
 ## License
 
-[MIT](LICENSE)
+This project is released under the [MIT License](LICENSE)
