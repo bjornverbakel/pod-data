@@ -4,9 +4,13 @@ This is a completion checklist app for **NieR: Automata**, available at [poddata
 
 ## Technologies
 
-- **Framework**: [Nuxt 4](https://nuxt.com)
-- **Database & Authentication**: [Supabase](https://supabase.com)
-- **UI Library**: [Vuetify](https://vuetifyjs.com)
+* **Framework**: [Nuxt 4](https://nuxt.com)
+* **Database & Authentication**: [Supabase](https://supabase.com)
+* **UI Library**: [Vuetify](https://vuetifyjs.com)
+* **Styling**: [SCSS (Sass)](https://sass-lang.com)
+* **Deployment**: [Vercel](https://vercel.com)
+* **CDN & Security**: [Cloudflare](https://cloudflare.com)
+* **Bot Protection**: [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile)
 
 ## Setup
 
