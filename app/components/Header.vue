@@ -5,8 +5,9 @@
     </template>
 
     <v-app-bar-title class="app-logo text-h5">
-      <NuxtLink to="/" class="text-decoration-none d-inline-block" style="color: inherit">
-        Pod Data
+      <NuxtLink to="/" class="text-decoration-none d-flex ga-2" style="color: inherit">
+        <img src="/img/robot-secondary.svg" width="26" alt="Logo icon" />
+        <span class="mt-1">Pod Data</span>
       </NuxtLink>
     </v-app-bar-title>
 
