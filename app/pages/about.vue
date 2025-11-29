@@ -3,9 +3,9 @@
     <h1 class="main-header">About</h1>
 
     <p>
-      This website is an unofficial checklist for tracking your completion progress in
-      <em>NieR: Automata</em>. It allows you to mark various items, quests, and achievements as
-      completed, helping you keep track of what you've done and what still needs to be accomplished.
+      Pod Data is an unofficial checklist for tracking your completion progress in
+      <em>NieR: Automata</em>. Mark various items, quests, and achievements as completed, to help
+      keep track of what you've done and what still needs to be accomplished.
     </p>
 
     <p>

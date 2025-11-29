@@ -4,9 +4,11 @@ import { SpeedInsights } from '@vercel/speed-insights/nuxt'
 
 useSeoMeta({
   title: 'Pod Data',
-  description: 'Completion checklist for NieR: Automata to track your in-game progress.',
+  description:
+    "Pod Data is an unofficial checklist for tracking your completion progress in NieR: Automata. Mark various items, quests, and achievements as completed, to help keep track of what you've done and what still needs to be accomplished.",
   ogTitle: 'Pod Data',
-  ogDescription: 'Completion checklist for NieR: Automata to track your in-game progress.',
+  ogDescription:
+    "Pod Data is an unofficial checklist for tracking your completion progress in NieR: Automata. Mark various items, quests, and achievements as completed, to help keep track of what you've done and what still needs to be accomplished.",
   ogType: 'website',
 })
 
