@@ -46,6 +46,19 @@ export const useAuthValidation = () => {
     return null
   }
 
+  const resolveAuthError = (error: any) => {
+    if (!error) return null
+
+    // const msg = error.message?.toLowerCase() || ''
+    // // Handle rate limiting/timeout errors
+    // if ((error as any).status === 429 || msg.includes('too many requests') || msg.includes('rate limit')) {
+    //   return 'Too many requests. Please wait a moment before trying again.'
+    // }
+
+    // Return original message for other errors
+    return error.message
+  }
+
   return {
     validateEmail,
     validatePassword,
@@ -53,5 +66,6 @@ export const useAuthValidation = () => {
     validateRequired,
     validateCaptcha,
     validateUsername,
+    resolveAuthError,
   }
 }

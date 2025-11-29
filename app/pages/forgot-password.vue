@@ -2,9 +2,26 @@
   <div class="d-flex justify-center auth-main-content h-screen-content align-center">
     <v-card class="d-flex flex-column justify-center" width="600">
       <div class="section-spacing pa-4 pa-sm-16">
-        <v-card-title class="text-h4 pa-0 text-truncate-wrap">Forgot password</v-card-title>
+        <v-card-title class="text-h4 pa-0 text-truncate-wrap">
+          {{ emailSent ? 'Check your email' : 'Forgot password' }}
+        </v-card-title>
 
-        <v-form class="d-flex flex-column ga-4" @submit.prevent="handleResetPassword">
+        <div v-if="emailSent">
+          <EmailSentState
+            :email="email"
+            action-label="Try again"
+            :feedback="feedback"
+            @update:feedback="feedback = $event"
+            @action="emailSent = false"
+          >
+            <template #message>
+              A password reset link has been sent to <strong>{{ email }}</strong
+              >. Please check your inbox to reset your password. This link will expire in 1 hour.
+            </template>
+          </EmailSentState>
+        </div>
+
+        <v-form v-else class="d-flex flex-column ga-4" @submit.prevent="handleResetPassword">
           <AppAlert
             v-if="feedback.message"
             v-model:message="feedback.message"
@@ -24,12 +41,23 @@
             <span class="text-truncate-wrap">Request reset link</span>
           </v-btn>
         </v-form>
+
+        <div class="text-center text-body-2 text-medium-emphasis">
+          <p>
+            Remembered your password?
+            <NuxtLink :to="'/login'" class="text-decoration-none text-primary"
+              >Return to login</NuxtLink
+            >
+          </p>
+        </div>
       </div>
     </v-card>
   </div>
 </template>
 
 <script setup lang="ts">
+import EmailSentState from '~/components/auth/EmailSentState.vue'
+
 useHead({
   title: 'Forgot Password',
 })
@@ -37,10 +65,11 @@ useHead({
 definePageMeta({ authLayout: true })
 
 const { resetPassword } = useAuth()
-const { validateEmail, validateCaptcha } = useAuthValidation()
+const { validateEmail, validateCaptcha, resolveAuthError } = useAuthValidation()
 const email = ref('')
 const token = ref('')
 const loading = ref(false)
+const emailSent = ref(false)
 const feedback = ref({ message: '', type: 'info' as 'success' | 'error' | 'info' | 'warning' })
 
 const handleResetPassword = async () => {
@@ -74,7 +103,13 @@ const handleResetPassword = async () => {
 
   loading.value = false
 
+  if (error) {
+    feedback.value = { message: resolveAuthError(error)!, type: 'error' }
+    return
+  }
+
   // Always show success message to prevent email enumeration via error messages (like rate limits)
-  feedback.value = { message: 'Please check your email for the reset link.', type: 'success' }
+  emailSent.value = true
+  feedback.value = { message: '', type: 'info' }
 }
 </script>

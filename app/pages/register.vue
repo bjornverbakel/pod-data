@@ -12,40 +12,20 @@
           }}
         </v-card-title>
 
-        <div v-if="registrationSuccess" class="d-flex flex-column ga-4">
-          <p class="text-body-1">
-            A link has been sent to <strong>{{ email }}</strong
-            >. Please check your inbox to verify your email address and activate your account. This
-            link will expire in 1 hour.
-          </p>
-
-          <div class="d-flex align-center ga-2 text-warning">
-            <v-icon icon="mdi-folder-alert-outline" />
-            <p>You may need to check your spam folder.</p>
-          </div>
-
-          <v-divider class="my-4" />
-
-          <div class="d-flex align-center ga-2">
-            <span class="text-body-2">Didn't receive an email?</span>
-
-            <v-btn
-              variant="text"
-              color="primary"
-              density="comfortable"
-              :loading="resendLoading"
-              @click="handleResend"
-              class="w-fit"
-            >
-              Resend
-            </v-btn>
-          </div>
-
-          <AppAlert
-            v-if="feedback.message"
-            v-model:message="feedback.message"
-            :type="feedback.type"
-          />
+        <div v-if="registrationSuccess">
+          <EmailSentState
+            :email="email"
+            :loading="resendLoading"
+            :feedback="feedback"
+            @update:feedback="feedback = $event"
+            @action="handleResend"
+          >
+            <template #message>
+              A link has been sent to <strong>{{ email }}</strong
+              >. Please check your inbox to verify your email address and activate your account.
+              This link will expire in 1 hour.
+            </template>
+          </EmailSentState>
         </div>
 
         <template v-else>
@@ -125,6 +105,8 @@
 </template>
 
 <script setup lang="ts">
+import EmailSentState from '~/components/auth/EmailSentState.vue'
+
 useHead({
   title: 'Register',
 })
@@ -132,8 +114,14 @@ useHead({
 definePageMeta({ authLayout: true })
 
 const { isAnonymous, register, signInAnonymously, resendVerification } = useAuth()
-const { validateRequired, validatePassword, validateCaptcha, validateEmail, validateUsername } =
-  useAuthValidation()
+const {
+  validateRequired,
+  validatePassword,
+  validateCaptcha,
+  validateEmail,
+  validateUsername,
+  resolveAuthError,
+} = useAuthValidation()
 const username = ref('')
 const email = ref('')
 const password = ref('')
@@ -230,7 +218,7 @@ const handleResend = async () => {
   resendLoading.value = false
 
   if (error) {
-    feedback.value = { message: error.message, type: 'error' }
+    feedback.value = { message: resolveAuthError(error)!, type: 'error' }
   } else {
     feedback.value = { message: 'Verification email resent.', type: 'success' }
   }
