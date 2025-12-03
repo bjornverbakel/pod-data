@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:local": "nuxt dev --dotenv .env.local",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "supabase:types": "supabase gen types typescript --project-id uwxuwdrvfqbgczgpnxwb --schema public > app/types/database.types.ts",

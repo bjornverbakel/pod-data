@@ -55,23 +55,31 @@
 
     <div v-if="groupBy && groupKeys.length > 0" class="d-flex flex-wrap ga-2 full-bleed-md">
       <v-chip
-        class="text-caption min-w-min"
+        class="text-caption min-w-min pr-1"
         size="small"
         variant="text"
-        prepend-icon="mdi-flask"
+        prepend-icon="mdi-filter-variant"
         color="medium-emphasis"
       >
-        Shortcuts (experimental):
+        Types:
       </v-chip>
       <v-chip
         v-for="group in groupKeys"
         :key="group"
         size="small"
-        variant="tonal"
-        @click="scrollToGroup(group)"
+        :variant="activeGroup === group ? 'flat' : 'tonal'"
+        :color="activeGroup === group ? 'primary' : 'medium-emphasis'"
+        @click="toggleGroup(group)"
         class="text-caption min-w-min"
       >
         {{ group }}
+        <v-icon
+          v-if="activeGroup === group"
+          end
+          icon="mdi-close-circle"
+          size="large"
+          class="ml-1"
+        ></v-icon>
       </v-chip>
     </div>
 
@@ -84,21 +92,31 @@
       :items="displayItems"
       :item-value="getItemKey"
       height="550"
-      item-height="60"
+      item-height="65"
       fixed-header
       hover
     >
       <template v-slot:item="{ item, index }">
         <tr
           :id="`checklist-item-${index}`"
-          height="56"
-          :class="item._isGroupHeader ? 'bg-secondary' : ''"
+          :class="['checklist-row', item._isGroupHeader ? 'bg-secondary' : '']"
           :style="item._isGroupHeader ? '' : 'cursor: pointer'"
           @click="!item._isGroupHeader && onToggle(item, !isCompleted(item))"
         >
           <template v-if="item._isGroupHeader">
             <td :colspan="tableHeaders.length" class="font-weight-bold text-on-secondary">
               {{ item.title }}
+              <v-chip
+                v-if="item.title === activeGroup"
+                size="small"
+                color="medium-emphasis"
+                variant="text"
+                class="ml-4"
+                prepend-icon="mdi-filter-off-outline"
+                @click.stop="toggleGroup(item.title)"
+              >
+                Remove Filter
+              </v-chip>
             </td>
           </template>
           <template v-else>
@@ -192,7 +210,9 @@ const completionPercent = computed(() => {
 
 const search = ref('')
 const hideCompleted = ref(false)
+const activeGroup = ref<string | null>(null)
 
+// 1. First filter layer: hide completed and search
 const filteredItems = computed(() => {
   let items = props.items
 
@@ -212,53 +232,16 @@ const filteredItems = computed(() => {
   return items
 })
 
-const getItemKey = (item: any) => {
-  if (item._isGroupHeader) return `header-${item.title}`
-  const groupKey = props.groupBy ? item[props.groupBy] : 'all'
-  return `${groupKey}-${item.name}-${item.variant || 'base'}`
-}
+// 2. Determine available groups from filtered items
+// BEFORE the activeGroup filter so the chips don't disappear when you select one
+const groupKeys = computed(() => {
+  if (!props.groupBy) return []
 
-const hasBaseType = (item: any) => {
-  // Check if there is another item in the same group with the same name but no variant
-  const currentItems = filteredItems.value
-  const group = currentItems.filter(
-    i => (props.groupBy ? i[props.groupBy] === item[props.groupBy] : true) && i.name === item.name
-  )
-  return group.some(i => !i.variant)
-}
+  // Extract unique groups from current filtered items
+  const groups = new Set(filteredItems.value.map(item => item[props.groupBy!] || 'Other'))
+  const keys = Array.from(groups)
 
-const displayItems = computed(() => {
-  const items = filteredItems.value
-  if (!props.groupBy) return items
-
-  const groups: Record<string, any[]> = {}
-  items.forEach(item => {
-    const key = item[props.groupBy!] || 'Other'
-    if (!groups[key]) groups[key] = []
-    groups[key].push(item)
-  })
-
-  // Sort items within each group by name, then variant
-  Object.values(groups).forEach(group => {
-    group.sort((a, b) => {
-      // First sort by sort_order if available
-      if (a.sort_order !== undefined && b.sort_order !== undefined) {
-        return a.sort_order - b.sort_order
-      }
-
-      if (a.name === b.name) {
-        // If names are same, sort by variant (nulls first)
-        if (!a.variant) return -1
-        if (!b.variant) return 1
-        return a.variant.localeCompare(b.variant)
-      }
-      return a.name.localeCompare(b.name)
-    })
-  })
-
-  const result: any[] = []
-  const keys = Object.keys(groups)
-
+  // Apply sorting
   if (props.groupOrder) {
     keys.sort((a, b) => {
       const indexA = props.groupOrder!.indexOf(a)
@@ -273,7 +256,60 @@ const displayItems = computed(() => {
     keys.sort()
   }
 
-  keys.forEach(key => {
+  return keys
+})
+
+const getItemKey = (item: any) => {
+  if (item._isGroupHeader) return `header-${item.title}`
+  const groupKey = props.groupBy ? item[props.groupBy] : 'all'
+  return `${groupKey}-${item.name}-${item.variant || 'base'}`
+}
+
+const hasBaseType = (item: any) => {
+  const currentItems = filteredItems.value
+  const group = currentItems.filter(
+    i => (props.groupBy ? i[props.groupBy] === item[props.groupBy] : true) && i.name === item.name
+  )
+  return group.some(i => !i.variant)
+}
+
+// 3. Display items: Apply grouping and sorting
+const displayItems = computed(() => {
+  const items = filteredItems.value
+  if (!props.groupBy) return items
+
+  const groups: Record<string, any[]> = {}
+  items.forEach(item => {
+    const key = item[props.groupBy!] || 'Other'
+
+    // IF activeGroup is set, only include items from that group
+    if (activeGroup.value && key !== activeGroup.value) return
+
+    if (!groups[key]) groups[key] = []
+    groups[key].push(item)
+  })
+
+  // Sort items within each group by name, then variant
+  Object.values(groups).forEach(group => {
+    group.sort((a, b) => {
+      if (a.sort_order !== undefined && b.sort_order !== undefined) {
+        return a.sort_order - b.sort_order
+      }
+      if (a.name === b.name) {
+        if (!a.variant) return -1
+        if (!b.variant) return 1
+        return a.variant.localeCompare(b.variant)
+      }
+      return a.name.localeCompare(b.name)
+    })
+  })
+
+  const result: any[] = []
+
+  // Determine which group keys to include based on activeGroup
+  const relevantKeys = groupKeys.value.filter(k => groups[k])
+
+  relevantKeys.forEach(key => {
     result.push({ _isGroupHeader: true, title: key })
     const items = groups[key]
     if (items) {
@@ -285,21 +321,22 @@ const displayItems = computed(() => {
 
 const tableRef = ref()
 
-const groupKeys = computed(() => {
-  if (!props.groupBy) return []
-  return displayItems.value.filter(item => item._isGroupHeader).map(item => item.title)
-})
+const toggleGroup = (group: string) => {
+  if (activeGroup.value === group) {
+    activeGroup.value = null // Toggle off
+  } else {
+    activeGroup.value = group // Toggle on
 
-const scrollToGroup = async (group: string) => {
-  const index = displayItems.value.findIndex(item => item._isGroupHeader && item.title === group)
-
-  // If group not found or tableRef is not set, do nothing
-  if (index === -1 || !tableRef.value) {
-    return
-  }
-
-  if (typeof tableRef.value.scrollToIndex === 'function') {
-    tableRef.value.scrollToIndex(index)
+    // Reset table scroll to top when filtering
+    if (tableRef.value && typeof tableRef.value.scrollToIndex === 'function') {
+      tableRef.value.scrollToIndex(0)
+    }
   }
 }
 </script>
+
+<style scoped>
+.checklist-row {
+  scroll-margin-top: 56px;
+}
+</style>
