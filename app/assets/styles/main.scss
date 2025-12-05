@@ -13,6 +13,26 @@ body {
   padding: 0;
 }
 
+code {
+  background: rgba(var(--v-theme-primary), 0.08);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: rgba(var(--v-theme-primary), 0.18) 1px solid;
+  letter-spacing: 1px !important;
+  display: inline-block;
+  font-family: $font-family-mono !important;
+}
+
+.text-h6,
+.text-body-1,
+.text-body-2,
+.text-subtitle-1,
+.text-subtitle-2,
+.text-caption,
+.text-overline {
+  font-family: $font-family-base !important;
+}
+
 .font-base {
   font-family: $font-family-base !important;
 }
@@ -104,7 +124,8 @@ body {
   }
 }
 
-ul {
+ul,
+ol {
   padding-left: 1.8rem;
 }
 

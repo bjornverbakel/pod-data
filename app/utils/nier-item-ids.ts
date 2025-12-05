@@ -44,8 +44,59 @@ export const WEAPON_IDS: Record<number, string> = {
   1630: "Demon's Cry",
   1640: "Angel's Folly",
   1650: 'Machine Heads',
-  1875: 'Emil Heads',
-  1877: 'Emil Heads', // Keeping both just in case
+  1875: 'Engine Blade',
+  1876: 'Cypress Stick',
+  1877: 'Emil Heads',
+}
+
+export const ACHIEVEMENT_IDS: Record<number, string> = {
+  5020: 'Resuscitated Body',
+  5021: 'Vestiges of Prosperity',
+  5022: "It's a Healthy Baby Boy!",
+  5023: 'We Await Your Next Visit',
+  5024: 'Creation and Insurrection',
+  5025: 'The Mechanical Kingdom',
+  5026: 'Ruler of the Deep',
+  5027: 'Those Who Love Humans',
+  5028: 'Iron Soul',
+  5029: 'One Battle Ends',
+  5030: 'A New Battle Begins',
+  5031: 'Final Wish',
+  5032: 'Treacherous Blade',
+  5033: 'Farewell, Pascal',
+  5034: 'Justice',
+  5035: 'Crime and Punishment',
+  5036: 'Leaving for the New World',
+  5037: 'Beautiful World',
+  5038: 'The Minds That Emerged',
+  5039: 'The Circle of Death',
+  5040: 'Cherish Our Resources',
+  5041: 'First Errand',
+  5042: 'The Mercenary',
+  5043: 'Information Master',
+  5044: 'Destruction is My Job',
+  5045: 'Chip Collector',
+  5046: 'Weapons Maniac',
+  5047: 'Tools of the Trade',
+  5048: 'Inorganic Blade',
+  5049: 'Supreme Support Weapons',
+  5050: "Fighting's Not My Thing",
+  5051: "A Scanner's Power",
+  5052: 'Machines vs. Machines',
+  5053: 'The Power of Hate',
+  5054: 'Ruler of the Skies',
+  5055: 'Harvest King',
+  5056: 'Pod Hunter',
+  5057: 'Desire Without Emotion',
+  5058: 'Animal Rider',
+  5059: 'A Round by the Pond',
+  5060: "Wait! Don't Kill Me!",
+  5061: 'What Are You Doing?',
+  5062: 'Not That I Mind...',
+  5063: 'Come Take a Look!',
+  5064: 'Naughty Children',
+  5065: 'Transcendent Being',
+  5066: 'Lunar Tear',
 }
 
 export const POD_PROGRAM_IDS: Record<number, string> = {
@@ -116,6 +167,82 @@ export const NIER_ITEM_IDS: Record<number, string> = {
   ...WEAPON_IDS,
   ...POD_PROGRAM_IDS,
   ...FISH_IDS,
+  ...ACHIEVEMENT_IDS,
+}
+
+export const ARCHIVE_IDS: Record<number, string> = {
+  // Pearl Harbor Descent Records
+  1020010: 'YoRHa: Gunner 16', // PearlHarbor1
+  1020020: 'YoRHa: Scanner 21', // PearlHarbor2
+  1020030: 'YoRHa: Attacker 4', // PearlHarbor3
+  1020040: 'YoRHa: Attacker 2', // PearlHarbor4
+  1020050: 'Resistance: Rose', // PearlHarbor5
+  1020060: 'Resistance: Anemone', // PearlHarbor6
+  1020070: 'Pearl Harbor Descent Summary', // PearlHarbor7
+
+  // Project Gestalt Reports
+  1170120: 'Project Gestalt Report 1', // Report1
+  1170130: 'Project Gestalt Report 2', // Report2
+  1170140: 'Project Gestalt Report 3', // Report3
+  1170150: 'Project Gestalt Report 4', // Report4
+  1170160: 'Project Gestalt Report 5', // Report5
+  1170170: 'Project Gestalt Report 6', // Report6
+  1170180: 'Project Gestalt Report 7', // Report7
+  1170190: 'Project Gestalt Report 8', // Report8
+  1170200: 'Project Gestalt Report 9', // Report9
+  1170210: 'Project Gestalt Report 10', // Report10
+  1170220: 'Project Gestalt Report 11', // Report11
+
+  // Mysterious Lithographs
+  1170112: 'Mysterious Lithograph 1', // MysteryStone1
+  1170114: 'Mysterious Lithograph 2', // MysteryStone2
+  1170116: 'Mysterious Lithograph 3', // MysteryStone3
+  1170118: 'Mysterious Lithograph 4', // MysteryStone4
+
+  // Engels Records
+  1120010: 'Engels 110-B Record 0005', // Eng1
+  1120020: 'Engels 110-B Record 0010', // Eng2
+  1120030: 'Engels 110-B Record 0020', // Eng3
+
+  // Old World Information
+  1170010: 'Abandoned Factory Memo', // LostInfo-Factory1
+  1170020: 'Factory Cafeteria Sign', // LostInfo-Factory2
+  1170030: 'Newspaper Scrap', // LostInfo-Submerge1
+  1170040: 'Strange Doll', // LostInfo-Park1
+  1170050: 'Tattered Pamphlet', // LostInfo-Park2
+  1170060: 'Paper Attached to Vehicle', // LostInfo-Castle1
+  1170070: 'Rotten Info Sheet', // LostInfo-Woods1
+  1170080: 'Bulletin Record', // LostInfo-Desert1
+  1170090: 'Department Store Flyer', // LostInfo-Ruins1
+  1170100: 'Nuclear Arms Manual', // LostInfo-Ruins2
+  1170105: 'Ragged DVD', // LostInfo-Ruins3
+  1170110: 'Filthy Lottery Ticket', // LostInfo-Ruins4
+
+  // Key Items / Story
+  1040010: 'Letter to the Forest King', // H-Letter
+  1050010: "11B's Escape Plan", // H-llBDesertion
+  1080010: "Jackass's Bomb Recipe", // H-BombRecipe
+  1130010: "Infant Machine's Memories", // H-ChildMemory
+  1150010: "A Pious Robot's Will", // H-Testament
+  1160010: 'Records of Bestial Machine', // H-AnimalRoboMemory
+  1180010: 'Machine Research Report', // H-RoboReport
+  1100010: 'YoRHa Body Storage Records', // H-Flyer-KJ
+  1161050: 'Weapon Shop Flyer', // H-Robo5
+
+  // Server Records
+  1140010: 'Tower System Outline', // Server1
+  1140020: 'Class 1 Patient Health Record', // Server2
+  1140030: 'Human Server Records', // Server3
+
+  // Saved Machine Records / Data Saved on Server (Robo Series)
+  1090010: 'Library Index', // Robo1
+  1090020: '[Top Secret] Black Box', // Robo2
+  1090030: '[Top Secret] Model No.2', // Robo3
+  1090040: '[Top Secret] YoRHa Disposal', // Robo4
+  // Robo5 is Weapon Shop Flyer (1161050)
+  1090060: 'Shipping Records', // Robo6
+  1090070: 'Council. YoRHa Records', // Robo7
+  1090080: '[Top Secret] Project YoRHa', // Robo8
 }
 
 // Helper to normalize names for matching with DB

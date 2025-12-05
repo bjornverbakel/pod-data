@@ -5,6 +5,10 @@
       <h2 v-if="subtitle" class="sub-header mt-1">{{ subtitle }}</h2>
     </div>
 
+    <div v-if="body" class="body-text mb-4">{{ body }}</div>
+
+    <slot name="before-stats" />
+
     <AppAlert
       v-if="feedback.message"
       v-model:message="feedback.message"
@@ -179,6 +183,8 @@ export interface Header {
 const props = defineProps<{
   title: string
   subtitle?: string
+  body?: string
+  beforeStats?: string
   items: any[]
   loading: boolean
   feedback: { message: string; type: 'success' | 'error' | 'info' | 'warning' }

@@ -1,5 +1,11 @@
 import { parseNierSave, type NierSaveData } from '~/utils/nier-save-parser'
-import { WEAPON_IDS, POD_PROGRAM_IDS, FISH_IDS, normalizeName } from '~/utils/nier-item-ids'
+import {
+  WEAPON_IDS,
+  POD_PROGRAM_IDS,
+  FISH_IDS,
+  ARCHIVE_IDS,
+  normalizeName,
+} from '~/utils/nier-item-ids'
 import { categories } from '~/utils/categories'
 
 export const useSaveImporter = () => {
@@ -32,6 +38,12 @@ export const useSaveImporter = () => {
         .filter((name): name is string => !!name)
         .map(normalizeName)
     )
+    const foundArchives = new Set(
+      saveData.archives
+        .map(id => ARCHIVE_IDS[id])
+        .filter((name): name is string => !!name)
+        .map(normalizeName)
+    )
 
     const exportData: Record<string, any[]> = {}
     let totalFound = 0
@@ -44,13 +56,15 @@ export const useSaveImporter = () => {
     // 2. Iterate over categories and match items against the database
     for (const category of categories) {
       let tableName = category.key
-      if (category.key === 'pod-programs') tableName = 'pod_programs'
+
+      if (category.key === 'pod-programs') tableName = 'pod_programs' // Adjust table name to match DB
 
       // Determine which set of found names to use for this category
       let foundNames: Set<string> | null = null
       if (category.key === 'weapons') foundNames = foundWeapons
       else if (category.key === 'pod-programs') foundNames = foundPodPrograms
       else if (category.key === 'fish') foundNames = foundFish
+      else if (category.key === 'archives') foundNames = foundArchives
 
       if (!foundNames) continue
 
@@ -81,7 +95,10 @@ export const useSaveImporter = () => {
       }
     }
 
-    return { exportData, totalFound }
+    return {
+      exportData,
+      totalFound,
+    }
   }
 
   const importSaveFile = async (file: File) => {
@@ -155,6 +172,9 @@ export const useSaveImporter = () => {
       )
       exportData._debug_fish = saveData.fish.map(
         id => `0x${id.toString(16).toUpperCase()} (${FISH_IDS[id] || '?'})`
+      )
+      exportData._debug_archives = saveData.archives.map(
+        id => `0x${id.toString(16).toUpperCase()} (${ARCHIVE_IDS[id] || '?'})`
       )
 
       // Raw debug info

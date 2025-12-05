@@ -1,6 +1,7 @@
 <template>
   <Checklist
     title="Weapons"
+    subtitle="Track your weapon collection."
     :items="weapons"
     :loading="loading"
     v-model:feedback="feedback"
@@ -9,7 +10,15 @@
     :on-toggle="handleToggle"
     group-by="type"
     :group-order="['Small Swords', 'Large Swords', 'Spears', 'Combat Bracers']"
-  />
+  >
+    <template #before-stats>
+      <div class="d-flex ga-4 text-medium-emphasis">
+        <v-icon icon="mdi-information-slab-circle" />
+        Note: Weapons should only be considered as complete at max level, as this also completes
+        their weapon story intel.
+      </div>
+    </template>
+  </Checklist>
 </template>
 
 <script lang="ts" setup>

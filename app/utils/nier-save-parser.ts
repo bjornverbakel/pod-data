@@ -8,13 +8,14 @@
  * - Pods:      205744 (0x323B0)
  */
 
-import { WEAPON_IDS, POD_PROGRAM_IDS, FISH_IDS } from './nier-item-ids'
+import { WEAPON_IDS, POD_PROGRAM_IDS, FISH_IDS, ARCHIVE_IDS } from './nier-item-ids'
 
 export interface NierSaveData {
   items: number[]
   weapons: number[]
   podPrograms: number[]
   fish: number[]
+  archives: number[]
   rawWeapons?: { id: number; level: number; exp: number }[]
   rawInventory?: { id: number; status: number; count: number }[]
 }
@@ -25,6 +26,7 @@ export const parseNierSave = (buffer: ArrayBuffer): NierSaveData => {
   const weapons: number[] = []
   const podPrograms: number[] = []
   const fish: number[] = []
+  const archives: number[] = []
 
   // Debug arrays
   const rawWeapons: { id: number; level: number; exp: number }[] = []
@@ -57,6 +59,8 @@ export const parseNierSave = (buffer: ArrayBuffer): NierSaveData => {
       // Fish IDs are typically in the 8000+ range
       if (FISH_IDS[id]) {
         fish.push(id)
+      } else if (ARCHIVE_IDS[id]) {
+        archives.push(id)
       } else if (count > 0) {
         items.push(id)
       }
@@ -115,11 +119,27 @@ export const parseNierSave = (buffer: ArrayBuffer): NierSaveData => {
     }
   }
 
+  // --- ARCHIVES SCAN ---
+  // Archives are not in the standard inventory block.
+  // We scan the entire buffer for known Archive IDs.
+  const archiveIdsSet = new Set(Object.keys(ARCHIVE_IDS).map(Number))
+
+  // Scan the entire buffer with a stride of 4 bytes
+  for (let offset = 0; offset < buffer.byteLength - 4; offset += 4) {
+    const val = view.getInt32(offset, true)
+    if (archiveIdsSet.has(val)) {
+      if (!archives.includes(val)) {
+        archives.push(val)
+      }
+    }
+  }
+
   return {
     items,
     weapons,
     podPrograms,
     fish,
+    archives,
     rawWeapons,
     rawInventory,
   }

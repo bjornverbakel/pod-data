@@ -1,79 +1,66 @@
 <template>
+  <v-dialog v-model="clearDataDialog" closeable max-width="500">
+    <v-card>
+      <v-card-title class="text-h6 text-truncate-wrap font-weight-bold"
+        >Confirm Deletion</v-card-title
+      >
+
+      <v-divider />
+
+      <v-card-text class="px-4">
+        Are you sure you want to clear all your completion data? This action cannot be undone.
+      </v-card-text>
+
+      <v-divider />
+
+      <v-card-actions class="pa-4">
+        <v-spacer></v-spacer>
+        <v-btn color="primary" variant="plain" class="border" @click="clearDataDialog = false">
+          Cancel
+        </v-btn>
+        <v-btn color="error" variant="flat" @click="performClearData">Clear Data</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
   <div class="section-spacing">
     <h1 class="main-header">Settings</h1>
 
     <v-card class="pa-6 pa-sm-8">
       <div class="section-spacing-sm">
-        <v-card-title class="pa-0 text-truncate-wrap">Data</v-card-title>
-        <v-card-text class="pa-0">
-          Export your completion data to a JSON file, or import data from a previously exported
-          file. This allows you to backup your progress or transfer it to another account.
-        </v-card-text>
-
-        <v-btn
-          color="primary"
-          prepend-icon="mdi-download"
-          :loading="exporting"
-          @click="handleExport"
-          class="w-fit"
-          variant="flat"
-        >
-          <span class="text-truncate-wrap">Export Data</span>
-        </v-btn>
-
-        <v-divider class="my-4" />
-
-        <div class="d-flex align-start flex-column flex-sm-row ga-4">
-          <v-file-input
-            v-model="importFile"
-            label="Import Data (JSON)"
-            accept=".json"
-            prepend-icon="mdi-upload"
-            :loading="importing"
-            :error-messages="error"
-            class="w-100"
-            show-size
-            hide-details
-          />
-
-          <v-btn
-            :disabled="!canImport"
-            :loading="importing"
-            @click="handleImport"
-            :height="$vuetify.display.smAndUp ? '56' : undefined"
-            variant="flat"
-            color="primary"
-          >
-            Import
-          </v-btn>
-        </div>
-
-        <AppAlert
-          v-if="successMessage"
-          type="success"
-          :message="successMessage"
-          @clear="successMessage = ''"
-        />
-        <AppAlert v-if="error" type="error" :message="error" @clear="error = ''" />
-
-        <v-divider class="my-4" />
-
         <v-card-title class="pa-0 text-truncate-wrap">Import Game Save</v-card-title>
         <v-card-text class="pa-0">
-          Import your NieR: Automata save file (SlotData_0.dat, etc.) to automatically mark items as
-          completed.
-          <br />
-          <small class="text-medium-emphasis"
-            >Note: Only items with known IDs will be imported.</small
-          >
+          Import your NieR: Automata save file to automatically mark items as completed.
         </v-card-text>
+        <v-expansion-panels variant="accordion" flat class="border-b font-base">
+          <v-expansion-panel>
+            <v-expansion-panel-title class="px-3">
+              <v-icon icon="mdi-information-slab-circle" class="mr-4" />
+              How to find and import your save file
+            </v-expansion-panel-title>
+            <v-expansion-panel-text class="px-0 text-body-2">
+              <ol>
+                <li>
+                  Locate your NieR: Automata save file on your device. This is typically found at:
+                  <code class="mt-2">C:\Users\[USERNAME]\Documents\My Games\NieR_Automata</code>
+                </li>
+                <li>
+                  Make a copy of the save file and save it elsewhere. <strong>DO NOT</strong> modify
+                  the actual save file in its original location. I am not responsible for any data
+                  loss.
+                </li>
+                <li>Use the file input below to select and import the copied save file.</li>
+              </ol>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
 
         <div class="d-flex align-start flex-column flex-sm-row ga-4 mt-2">
           <v-file-input
             v-model="saveFile"
             label="Import Save File (.dat)"
             accept=".dat"
-            prepend-icon="mdi-gamepad-round"
+            prepend-icon="mdi-content-save"
             :loading="saveImporting"
             :error-messages="saveError"
             class="w-100"
@@ -98,7 +85,7 @@
             @click="handleSaveDebug"
             :height="$vuetify.display.smAndUp ? '56' : undefined"
             variant="outlined"
-            color="secondary"
+            color="primary"
           >
             Debug JSON
           </v-btn>
@@ -111,6 +98,97 @@
           @clear="saveSuccessMessage = ''"
         />
         <AppAlert v-if="saveError" type="error" :message="saveError" @clear="saveError = ''" />
+      </div>
+    </v-card>
+
+    <v-card class="pa-6 pa-sm-8">
+      <div class="section-spacing-sm">
+        <v-card-title class="pa-0 text-truncate-wrap">Manage Completion Data</v-card-title>
+        <v-card-text class="pa-0">
+          Export your completion data to a JSON file, or import data from a previously exported
+          file. This allows you to backup your progress or transfer it to another account.
+        </v-card-text>
+
+        <v-btn
+          color="primary"
+          prepend-icon="mdi-download"
+          :loading="exporting"
+          @click="handleExport"
+          class="w-fit"
+          variant="flat"
+        >
+          <span class="text-truncate-wrap">Export Data</span>
+        </v-btn>
+
+        <v-divider class="my-4" />
+
+        <div class="d-flex align-start flex-column flex-sm-row ga-4">
+          <v-file-input
+            v-model="importFile"
+            label="Import Completion Data (.json)"
+            accept=".json"
+            prepend-icon="mdi-upload"
+            :loading="importing"
+            :error-messages="error"
+            class="w-100"
+            show-size
+            hide-details
+          />
+
+          <v-btn
+            :disabled="!canImport"
+            :loading="importing"
+            @click="handleImport"
+            :height="$vuetify.display.smAndUp ? '56' : undefined"
+            variant="flat"
+            color="primary"
+          >
+            Import Data
+          </v-btn>
+        </div>
+
+        <AppAlert
+          v-if="successMessage"
+          type="success"
+          :message="successMessage"
+          @clear="successMessage = ''"
+        />
+        <AppAlert v-if="error" type="error" :message="error" @clear="error = ''" />
+      </div>
+    </v-card>
+
+    <v-card class="pa-6 pa-sm-8">
+      <div class="section-spacing-sm">
+        <v-card-title class="pa-0 text-truncate-wrap">Clear All Data</v-card-title>
+
+        <v-card-text class="pa-0">
+          This will clear all your completion data. This action is irreversible.
+        </v-card-text>
+
+        <v-btn
+          color="error"
+          prepend-icon="mdi-delete"
+          class="w-fit"
+          variant="flat"
+          @click="confirmClearData"
+        >
+          Clear All Data
+        </v-btn>
+
+        <AppAlert
+          v-if="deleteSuccess"
+          type="success"
+          :message="deleteSuccess"
+          @clear="deleteSuccess = ''"
+          class="mt-4"
+        />
+        <AppAlert
+          v-if="deleteError"
+          type="error"
+          :message="deleteError"
+          @clear="deleteError = ''"
+          class="mt-4"
+        />
       </div>
     </v-card>
   </div>
@@ -138,7 +216,7 @@ useHead({
   title: 'Settings',
 })
 
-const { exportData, importData } = useDataManagement()
+const { exportData, importData, clearAllData } = useDataManagement()
 const { isAnonymous } = useAuth()
 const user = useSupabaseUser()
 
@@ -147,6 +225,9 @@ const importing = ref(false)
 const importFile = ref<File[] | null>(null)
 const error = ref('')
 const successMessage = ref('')
+const deleteError = ref('')
+const deleteSuccess = ref('')
+const clearDataDialog = ref(false)
 
 const {
   importSaveFile: importGameSave,
@@ -219,6 +300,23 @@ const handleImport = async () => {
     error.value = e.message
   } finally {
     importing.value = false
+  }
+}
+
+const confirmClearData = () => {
+  clearDataDialog.value = true
+}
+
+const performClearData = async () => {
+  clearDataDialog.value = false
+  deleteError.value = ''
+  deleteSuccess.value = ''
+
+  try {
+    await clearAllData()
+    deleteSuccess.value = 'All data cleared successfully.'
+  } catch (e: any) {
+    deleteError.value = 'Failed to clear data: ' + e.message
   }
 }
 </script>

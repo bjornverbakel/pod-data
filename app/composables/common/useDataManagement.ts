@@ -70,9 +70,27 @@ export const useDataManagement = () => {
     await processImportData(data)
   }
 
+  const clearAllData = async () => {
+    if (!user.value) throw new Error('User not authenticated')
+    const userId = user.value.id || (user.value as any).sub
+
+    await Promise.all(
+      categories.map(category =>
+        client
+          .from(category.relationKey as any)
+          .delete()
+          .eq('user_id', userId)
+          .then(({ error }) => {
+            if (error) throw error
+          })
+      )
+    )
+  }
+
   return {
     exportData,
     importData,
     processImportData,
+    clearAllData,
   }
 }
