@@ -50,8 +50,15 @@
             <v-expansion-panel-text class="px-0 text-body-2">
               <ol>
                 <li>
-                  Locate your NieR: Automata save file on your device. This is typically found at:
+                  Locate your NieR: Automata save file on your device (SlotData_0.dat). This is
+                  typically found at:
                   <code class="mt-2">C:\Users\[USERNAME]\Documents\My Games\NieR_Automata</code>
+                  <br />
+                  - <code class="mt-2">SlotData_0.dat</code> = Save slot 1
+                  <br />
+                  - <code class="mt-2">SlotData_1.dat</code> = Save slot 2
+                  <br />
+                  - <code class="mt-2">SlotData_2.dat</code> = Save slot 3
                 </li>
                 <li>
                   Make a copy of the save file and save it elsewhere. <strong>DO NOT</strong> modify
