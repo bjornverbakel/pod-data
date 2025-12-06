@@ -88,17 +88,18 @@
           >
             Import Save
           </v-btn>
-
-          <v-btn
-            :disabled="!canImportSave"
-            :loading="saveImporting"
-            @click="handleSaveDebug"
-            :height="$vuetify.display.smAndUp ? '56' : undefined"
-            variant="outlined"
-            color="primary"
-          >
-            Debug JSON
-          </v-btn>
+          <DevOnly>
+            <v-btn
+              :disabled="!canImportSave"
+              :loading="saveImporting"
+              @click="handleSaveDebug"
+              :height="$vuetify.display.smAndUp ? '56' : undefined"
+              variant="outlined"
+              color="primary"
+            >
+              Debug JSON
+            </v-btn>
+          </DevOnly>
         </div>
 
         <AppAlert
@@ -201,20 +202,21 @@
         />
       </div>
     </v-card>
+
+    <v-card v-if="!isAnonymous && user" class="pa-6 pa-sm-8">
+      <div class="section-spacing-sm">
+        <v-card-title class="pa-0 text-truncate-wrap">Account</v-card-title>
+        <v-card-text class="pa-0"> Update your profile information. </v-card-text>
+
+        <UpdateProfileForm />
+
+        <v-divider class="my-4" />
+
+        <div class="text-h6">Change Password</div>
+        <UpdatePasswordForm />
+      </div>
+    </v-card>
   </div>
-  <v-card v-if="!isAnonymous && user" class="pa-6 pa-sm-8">
-    <div class="section-spacing-sm">
-      <v-card-title class="pa-0 text-truncate-wrap">Account</v-card-title>
-      <v-card-text class="pa-0"> Update your profile information. </v-card-text>
-
-      <UpdateProfileForm />
-
-      <v-divider class="my-4" />
-
-      <div class="text-h6">Change Password</div>
-      <UpdatePasswordForm />
-    </div>
-  </v-card>
 </template>
 
 <script setup lang="ts">
