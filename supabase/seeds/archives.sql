@@ -73,7 +73,7 @@ VALUES (
     (
         '1a33294d-a04c-4cb9-a335-71412463fff1',
         '11B''s Escape Plan',
-        'Pearl Harbor Descent Records',
+        '',
         'https://nierautomata.wiki.fextralife.com/11B&#39;s+Escape+Plan',
         '2025-11-23 19:08:26.016229+00',
         '9'
@@ -81,7 +81,7 @@ VALUES (
     (
         '2c749a13-63f4-4392-bab8-972dcbf140d6',
         'Jackass''s Bomb Recipe',
-        'Pearl Harbor Descent Records',
+        '',
         'https://nierautomata.wiki.fextralife.com/Jackass&#39;s+Bomb+Recipe',
         '2025-11-23 19:08:26.016229+00',
         '10'
@@ -97,7 +97,7 @@ VALUES (
     (
         '334a37b2-010c-422c-8075-182e6217c879',
         '[Top Secret] Project YoRHa',
-        'Data Saved on Server',
+        '',
         'https://nierautomata.wiki.fextralife.com/[Top+Secret]+Project+YoRHa',
         '2025-11-23 19:08:26.016229+00',
         '28'
@@ -225,7 +225,7 @@ VALUES (
     (
         '85d05384-91ea-4a30-8664-595c0062907f',
         'A Pious Robot''s Will',
-        'Data Saved on Server',
+        '',
         'https://nierautomata.wiki.fextralife.com/A+Pious+Robot&#39;s+Will',
         '2025-11-23 19:08:26.016229+00',
         '26'
@@ -241,7 +241,7 @@ VALUES (
     (
         '921a59f5-35b3-4bfc-a773-5b23580e23a7',
         'Letter to the Forest King',
-        'Pearl Harbor Descent Records',
+        '',
         'https://nierautomata.wiki.fextralife.com/Letter+to+the+Forest+King',
         '2025-11-23 19:08:26.016229+00',
         '8'
@@ -257,7 +257,7 @@ VALUES (
     (
         '96f13232-5d74-4386-9f09-319b7e251aa8',
         'Records of Bestial Machine',
-        'Data Saved on Server',
+        '',
         'https://nierautomata.wiki.fextralife.com/Records+of+Bestial+Machine',
         '2025-11-23 19:08:26.016229+00',
         '27'
@@ -409,7 +409,7 @@ VALUES (
     (
         'ee264036-9257-4877-afa7-094e63145084',
         'Weapon Shop Flyer',
-        'Saved Machine Records',
+        '',
         'https://nierautomata.wiki.fextralife.com/Weapon+Shop+Flyer',
         '2025-11-23 19:08:26.016229+00',
         '18'

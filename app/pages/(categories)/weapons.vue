@@ -1,7 +1,6 @@
 <template>
   <Checklist
     title="Weapons"
-    subtitle="Track your weapon collection."
     :items="weapons"
     :loading="loading"
     v-model:feedback="feedback"

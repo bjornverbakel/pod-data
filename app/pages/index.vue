@@ -15,6 +15,17 @@
   </section>
 
   <section class="section-spacing">
+    <h2 class="sub-header mt-1">Auto Completion Marking</h2>
+
+    <p>
+      Automatic marking of completion records is now supported for several categories. Import you
+      save file in the settings to get started.
+    </p>
+
+    <v-btn class="w-fit" variant="flat" to="/settings#import-game-save">Import Save</v-btn>
+  </section>
+
+  <section class="section-spacing">
     <h1 class="main-header">Overall Progress</h1>
 
     <AppAlert v-if="error" type="error" :message="error" :closable="false" @clear="error = ''" />

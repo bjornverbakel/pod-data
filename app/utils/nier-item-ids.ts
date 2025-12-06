@@ -171,7 +171,7 @@ export const NIER_ITEM_IDS: Record<number, string> = {
 }
 
 export const ARCHIVE_IDS: Record<number, string> = {
-  // Pearl Harbor Descent Records
+  // --- Type: Pearl Harbor Descent Records ---
   1020010: 'YoRHa: Gunner 16', // PearlHarbor1
   1020020: 'YoRHa: Scanner 21', // PearlHarbor2
   1020030: 'YoRHa: Attacker 4', // PearlHarbor3
@@ -180,7 +180,52 @@ export const ARCHIVE_IDS: Record<number, string> = {
   1020060: 'Resistance: Anemone', // PearlHarbor6
   1020070: 'Pearl Harbor Descent Summary', // PearlHarbor7
 
-  // Project Gestalt Reports
+  // --- Type: Other (Empty Type in DB) ---
+  1040010: 'Letter to the Forest King', // H-Letter
+  1050010: "11B's Escape Plan", // H-llBDesertion
+  1080010: "Jackass's Bomb Recipe", // H-BombRecipe
+  1100010: 'Weapon Shop Flyer', // H-flyer-kj
+  1150010: "A Pious Robot's Will", // H-Testament
+  1160010: 'Records of Bestial Machine', // H-AnimalRoboMemory
+  1090080: '[Top Secret] Project YoRHa', // Robo8 (Note: Fits 'Saved Machine Records' ID sequence, but has empty Type)
+
+  // --- Type: Saved Machine Records ---
+  1090010: 'Library Index', // Robo1
+  1090020: 'Human Server Records', // Robo2
+  1090030: 'Tower System Outline', // Robo3
+  1090040: 'Class 1 Patient Health Record', // Robo4
+  1161050: '[Top Secret] Black Box', // H-Robo5 (Note: ID implies different sequence, but sort order places it here)
+  1090060: '[Top Secret] Model No.2', // Robo6
+  1090070: '[Top Secret] YoRHa Disposal', // Robo7
+
+  // --- Type: Engel's Memories ---
+  1120010: 'Engels 110-B Record 0005', // Eng1
+  1120020: 'Engels 110-B Record 0010', // Eng2
+  1120030: 'Engels 110-B Record 0020', // Eng3
+  1130010: "Infant Machine's Memories", // H-ChildMemory
+
+  // --- Type: Data Saved on Server ---
+  1140010: 'Shipping Records', // Server1
+  1140020: 'YoRHa Body Storage Records', // Server2
+  1140030: 'Council. YoRHa Records', // Server3
+
+  // --- Type: Old World Information ---
+  1170010: 'Abandoned Factory Memo', // LostInfo-Factory1
+  1170020: 'Factory Cafeteria Sign', // LostInfo-Factory2
+  1170030: 'Newspaper Scrap', // LostInfo-Surmerge1
+  1170040: 'Filthy Lottery Ticket', // LostInfo-Park1
+  1170050: 'Tattered Pamphlet', // LostInfo-Park2
+  1170060: 'Rotten Info Sheet', // LostInfo-Castle1
+  1170070: 'Strange Doll', // LostInfo-Woods1
+  1170080: 'Bulletin Record', // LostInfo-Desert1
+  1170090: 'Paper Attached to Vehicle', // LostInfo-Ruins1
+  1170100: 'Ragged DVD', // LostInfo-Ruins2
+  1170105: 'Department Store Flyer', // LostInfo-Ruins3
+  1170110: 'Nuclear Arms Manual', // LostInfo-Ruins4
+  1170112: 'Mysterious Lithograph 1', // MysteryStone1
+  1170114: 'Mysterious Lithograph 2', // MysteryStone2
+  1170116: 'Mysterious Lithograph 3', // MysteryStone3
+  1170118: 'Mysterious Lithograph 4', // MysteryStone4
   1170120: 'Project Gestalt Report 1', // Report1
   1170130: 'Project Gestalt Report 2', // Report2
   1170140: 'Project Gestalt Report 3', // Report3
@@ -192,57 +237,7 @@ export const ARCHIVE_IDS: Record<number, string> = {
   1170200: 'Project Gestalt Report 9', // Report9
   1170210: 'Project Gestalt Report 10', // Report10
   1170220: 'Project Gestalt Report 11', // Report11
-
-  // Mysterious Lithographs
-  1170112: 'Mysterious Lithograph 1', // MysteryStone1
-  1170114: 'Mysterious Lithograph 2', // MysteryStone2
-  1170116: 'Mysterious Lithograph 3', // MysteryStone3
-  1170118: 'Mysterious Lithograph 4', // MysteryStone4
-
-  // Engels Records
-  1120010: 'Engels 110-B Record 0005', // Eng1
-  1120020: 'Engels 110-B Record 0010', // Eng2
-  1120030: 'Engels 110-B Record 0020', // Eng3
-
-  // Old World Information
-  1170010: 'Abandoned Factory Memo', // LostInfo-Factory1
-  1170020: 'Factory Cafeteria Sign', // LostInfo-Factory2
-  1170030: 'Newspaper Scrap', // LostInfo-Submerge1
-  1170040: 'Strange Doll', // LostInfo-Park1
-  1170050: 'Tattered Pamphlet', // LostInfo-Park2
-  1170060: 'Paper Attached to Vehicle', // LostInfo-Castle1
-  1170070: 'Rotten Info Sheet', // LostInfo-Woods1
-  1170080: 'Bulletin Record', // LostInfo-Desert1
-  1170090: 'Department Store Flyer', // LostInfo-Ruins1
-  1170100: 'Nuclear Arms Manual', // LostInfo-Ruins2
-  1170105: 'Ragged DVD', // LostInfo-Ruins3
-  1170110: 'Filthy Lottery Ticket', // LostInfo-Ruins4
-
-  // Key Items / Story
-  1040010: 'Letter to the Forest King', // H-Letter
-  1050010: "11B's Escape Plan", // H-llBDesertion
-  1080010: "Jackass's Bomb Recipe", // H-BombRecipe
-  1130010: "Infant Machine's Memories", // H-ChildMemory
-  1150010: "A Pious Robot's Will", // H-Testament
-  1160010: 'Records of Bestial Machine', // H-AnimalRoboMemory
   1180010: 'Machine Research Report', // H-RoboReport
-  1100010: 'YoRHa Body Storage Records', // H-Flyer-KJ
-  1161050: 'Weapon Shop Flyer', // H-Robo5
-
-  // Server Records
-  1140010: 'Tower System Outline', // Server1
-  1140020: 'Class 1 Patient Health Record', // Server2
-  1140030: 'Human Server Records', // Server3
-
-  // Saved Machine Records / Data Saved on Server (Robo Series)
-  1090010: 'Library Index', // Robo1
-  1090020: '[Top Secret] Black Box', // Robo2
-  1090030: '[Top Secret] Model No.2', // Robo3
-  1090040: '[Top Secret] YoRHa Disposal', // Robo4
-  // Robo5 is Weapon Shop Flyer (1161050)
-  1090060: 'Shipping Records', // Robo6
-  1090070: 'Council. YoRHa Records', // Robo7
-  1090080: '[Top Secret] Project YoRHa', // Robo8
 }
 
 // Helper to normalize names for matching with DB

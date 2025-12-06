@@ -26,7 +26,7 @@
   <div class="section-spacing">
     <h1 class="main-header">Settings</h1>
 
-    <v-card class="pa-6 pa-sm-8">
+    <v-card class="pa-6 pa-sm-8" id="import-game-save">
       <div class="section-spacing-sm">
         <v-card-title class="pa-0 text-truncate-wrap">Import Game Save</v-card-title>
         <v-card-text class="pa-0">
@@ -37,7 +37,8 @@
           Weapons, Archives, and Fish. If you have completion data manually entered, it's
           recommended to
           <a class="text-error" href="#" @click.prevent="scrollToManageData">export a backup</a>
-          before proceeding. Some items may not be marked correctly.
+          before proceeding. Some items may not be marked correctly. It is recommended to review
+          your completion records after importing.
         </v-card-text>
 
         <v-expansion-panels variant="accordion" flat class="border-b font-base">

@@ -1,6 +1,5 @@
 /**
  * This utility parses the binary save file (SlotData_X.dat) to extract collected items.
- * Offsets and structures are based on reverse engineering of the save format.
  *
  * Key Offsets (Decimal):
  * - Inventory: 198000 (0x30570)
@@ -58,9 +57,9 @@ export const parseNierSave = (buffer: ArrayBuffer): NierSaveData => {
 
       // Fish IDs are typically in the 8000+ range
       if (FISH_IDS[id]) {
-        fish.push(id)
+        if (count > 0) fish.push(id)
       } else if (ARCHIVE_IDS[id]) {
-        archives.push(id)
+        if (count > 0) archives.push(id)
       } else if (count > 0) {
         items.push(id)
       }
@@ -72,7 +71,7 @@ export const parseNierSave = (buffer: ArrayBuffer): NierSaveData => {
   // Size: ~960 bytes (80 * 12)
   // Structure: [ID: 4 bytes] [Level: 4 bytes] ...
   // Note: The data appears to be packed or have variable strides in some save files.
-  // We scan the buffer in 4-byte steps to find valid [ID, Level] pairs.
+  // The buffer is scanned in 4-byte steps to find valid [ID, Level] pairs.
   const weaponsOffset = 204144
   const weaponsBufferSize = 80 * 12 // Scan range
 
@@ -85,7 +84,7 @@ export const parseNierSave = (buffer: ArrayBuffer): NierSaveData => {
     // Check if this looks like a valid weapon entry
     if (id !== -1 && id !== 0 && WEAPON_IDS[id]) {
       // It's a known weapon ID.
-      // We capture it for debug purposes (using 'exp' as 0 since we aren't sure where it is)
+      // Captured for debug purposes (using 'exp' as 0 since its location is uncertain)
       rawWeapons.push({ id, level, exp: 0 })
 
       // Check if it is max level
@@ -99,7 +98,7 @@ export const parseNierSave = (buffer: ArrayBuffer): NierSaveData => {
   // Offset: 205744 (0x323B0)
   // Size: ~360 bytes (30 * 12)
   // Structure: [Status: 4 bytes] [ID: 4 bytes] ... or similar
-  // We scan for valid Pod IDs.
+  // The buffer is scanned for valid Pod IDs.
   const podProgramsOffset = 205744
   const podProgramsBufferSize = 50 * 12 // Scan range (generous)
 
@@ -114,14 +113,14 @@ export const parseNierSave = (buffer: ArrayBuffer): NierSaveData => {
 
     if (val !== -1 && val !== 0 && POD_PROGRAM_IDS[val]) {
       // Found a valid Pod ID.
-      // Just having the ID in the slot usually means you have obtained it. We'll be permissive here.
+      // Just having the ID in the slot usually means it has been obtained. The check is permissive.
       podPrograms.push(val)
     }
   }
 
   // --- ARCHIVES SCAN ---
   // Archives are not in the standard inventory block.
-  // We scan the entire buffer for known Archive IDs.
+  // The entire buffer is scanned for known Archive IDs.
   const archiveIdsSet = new Set(Object.keys(ARCHIVE_IDS).map(Number))
 
   // Scan the entire buffer with a stride of 4 bytes
