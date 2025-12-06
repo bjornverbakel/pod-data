@@ -18,7 +18,7 @@
     <h2 class="sub-header mt-1">Auto Completion Marking</h2>
 
     <p>
-      Automatic marking of completion records is now supported for several categories. Import you
+      Automatic marking of completion records is now supported for several categories. Import your
       save file in the settings to get started.
     </p>
 
