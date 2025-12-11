@@ -262,10 +262,6 @@
 </template>
 
 <script setup lang="ts">
-import UpdatePasswordForm from '~/components/auth/UpdatePasswordForm.vue'
-import UpdateProfileForm from '~/components/auth/UpdateProfileForm.vue'
-import { useSaveImporter } from '~/composables/common/useSaveImporter'
-
 useHead({
   title: 'Settings',
 })

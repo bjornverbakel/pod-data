@@ -37,12 +37,19 @@ export default defineNuxtConfig({
     },
   },
 
+  components: [
+    {
+      path: '~/components/',
+      pathPrefix: false,
+    },
+  ],
+
   future: {
     compatibilityVersion: 4,
   },
 
   imports: {
-    dirs: ['composables/auth', 'composables/common', 'composables/game'],
+    dirs: ['composables/**'],
   },
 
   experimental: {

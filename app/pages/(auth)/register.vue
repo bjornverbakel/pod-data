@@ -105,8 +105,6 @@
 </template>
 
 <script setup lang="ts">
-import EmailSentState from '~/components/auth/EmailSentState.vue'
-
 useHead({
   title: 'Register',
 })

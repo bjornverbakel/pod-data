@@ -13,8 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import UpdatePasswordForm from '~/components/auth/UpdatePasswordForm.vue'
-
 const route = useRoute()
 
 useHead({
@@ -22,6 +20,4 @@ useHead({
 })
 
 definePageMeta({ authLayout: true })
-
-const user = useSupabaseUser()
 </script>
