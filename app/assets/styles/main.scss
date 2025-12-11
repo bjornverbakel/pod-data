@@ -18,9 +18,12 @@ code {
   padding: 4px 8px;
   border-radius: 4px;
   border: rgba(var(--v-theme-primary), 0.18) 1px solid;
-  letter-spacing: 1px !important;
-  display: inline-block;
   font-family: $font-family-mono !important;
+  letter-spacing: 1px !important;
+  display: inline-block !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  vertical-align: middle;
 }
 
 .text-h6,
@@ -130,7 +133,7 @@ ol {
 }
 
 li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .custom-link {
