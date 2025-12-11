@@ -45,10 +45,6 @@ export default defineNuxtConfig({
     dirs: ['composables/auth', 'composables/common', 'composables/game'],
   },
 
-  skewProtection: {
-    checkForUpdateStrategy: 'polling',
-  },
-
   experimental: {
     checkOutdatedBuildInterval: 5 * 60 * 1000, // 5 minutes
   },
