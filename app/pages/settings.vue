@@ -26,6 +26,7 @@
   <div class="section-spacing">
     <h1 class="main-header">Settings</h1>
 
+    <!-- Import Game Save -->
     <v-card class="pa-6 pa-sm-8" id="import-game-save">
       <div class="section-spacing-sm">
         <v-card-title class="pa-0 text-truncate-wrap">Import Game Save</v-card-title>
@@ -52,13 +53,44 @@
                 <li>
                   Locate your NieR: Automata save file on your device (SlotData_0.dat). This is
                   typically found at:
-                  <code class="mt-2">C:\Users\[USERNAME]\Documents\My Games\NieR_Automata</code>
-                  <br />
-                  - <code class="mt-2">SlotData_0.dat</code> = Save slot 1
-                  <br />
-                  - <code class="mt-2">SlotData_1.dat</code> = Save slot 2
-                  <br />
-                  - <code class="mt-2">SlotData_2.dat</code> = Save slot 3
+                  <div class="d-flex ga-1 my-2 flex-wrap flex-sm-nowrap">
+                    <code>C:\Users\[USERNAME]\Documents\My Games\NieR_Automata</code>
+                    <v-btn
+                      v-if="$vuetify.display.smAndUp"
+                      variant="plain"
+                      size="x-small"
+                      :icon="copied ? 'mdi-check' : 'mdi-content-copy'"
+                      :color="copied ? 'success' : undefined"
+                      @click="copy('C:\\Users\\[USERNAME]\\Documents\\My Games\\NieR_Automata')"
+                    />
+                    <v-btn
+                      v-else
+                      variant="plain"
+                      size="small"
+                      :prepend-icon="copied ? 'mdi-check' : 'mdi-content-copy'"
+                      :color="copied ? 'success' : undefined"
+                      class="mb-1"
+                      @click="copy('C:\\Users\\[USERNAME]\\Documents\\My Games\\NieR_Automata')"
+                    >
+                      {{ copied ? 'Copied!' : 'Copy Path' }}
+                    </v-btn>
+                  </div>
+                  <div class="my-2 d-flex flex-column ga-2">
+                    <div class="d-flex align-start ga-2">
+                      <span class="mt-1 font-weight-bold">-</span>
+                      <div><code>SlotData_0.dat</code> = Save slot 1</div>
+                    </div>
+
+                    <div class="d-flex align-start ga-2">
+                      <span class="mt-1 font-weight-bold">-</span>
+                      <div><code>SlotData_1.dat</code> = Save slot 2</div>
+                    </div>
+
+                    <div class="d-flex align-start ga-2">
+                      <span class="mt-1 font-weight-bold">-</span>
+                      <div><code>SlotData_2.dat</code> = Save slot 3</div>
+                    </div>
+                  </div>
                 </li>
                 <li>
                   Make a copy of the save file and save it elsewhere. <strong>DO NOT</strong> modify
@@ -119,6 +151,7 @@
       </div>
     </v-card>
 
+    <!-- Manage Completion Data -->
     <v-card class="pa-6 pa-sm-8" id="manage-completion-data">
       <div class="section-spacing-sm">
         <v-card-title class="pa-0 text-truncate-wrap">Manage Completion Data</v-card-title>
@@ -175,6 +208,22 @@
       </div>
     </v-card>
 
+    <!-- Account Settings -->
+    <v-card v-if="!isAnonymous && user" class="pa-6 pa-sm-8">
+      <div class="section-spacing-sm">
+        <v-card-title class="pa-0 text-truncate-wrap">Account</v-card-title>
+        <v-card-text class="pa-0"> Update your profile information. </v-card-text>
+
+        <UpdateProfileForm />
+
+        <v-divider class="my-4" />
+
+        <div class="text-h6">Change Password</div>
+        <UpdatePasswordForm />
+      </div>
+    </v-card>
+
+    <!-- Clear Data -->
     <v-card class="pa-6 pa-sm-8">
       <div class="section-spacing-sm">
         <v-card-title class="pa-0 text-truncate-wrap">Clear All Data</v-card-title>
@@ -209,20 +258,6 @@
         />
       </div>
     </v-card>
-
-    <v-card v-if="!isAnonymous && user" class="pa-6 pa-sm-8">
-      <div class="section-spacing-sm">
-        <v-card-title class="pa-0 text-truncate-wrap">Account</v-card-title>
-        <v-card-text class="pa-0"> Update your profile information. </v-card-text>
-
-        <UpdateProfileForm />
-
-        <v-divider class="my-4" />
-
-        <div class="text-h6">Change Password</div>
-        <UpdatePasswordForm />
-      </div>
-    </v-card>
   </div>
 </template>
 
@@ -247,6 +282,8 @@ const successMessage = ref('')
 const deleteError = ref('')
 const deleteSuccess = ref('')
 const clearDataDialog = ref(false)
+
+const { copied, copy } = useClipboard()
 
 const {
   importSaveFile: importGameSave,
@@ -346,3 +383,12 @@ const scrollToManageData = () => {
   el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 </script>
+
+<style scoped lang="scss">
+.v-expansion-panel:deep(.v-expansion-panel-text__wrapper) {
+  @media (max-width: 600px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+</style>
