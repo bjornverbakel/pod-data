@@ -27,7 +27,18 @@
 
       <!-- Normal logged in user: Show action menu -->
       <div v-if="user">
-        <v-btn icon="mdi-dots-vertical" id="user-menu-trigger" variant="text"></v-btn>
+        <div v-if="mdAndUp" class="d-flex align-center ga-2">
+          <v-btn to="/settings" icon="mdi-cog" variant="text" />
+
+          <v-btn
+            v-if="!isAnonymous"
+            icon="mdi-account"
+            id="user-menu-trigger"
+            variant="text"
+          ></v-btn>
+        </div>
+
+        <v-btn v-else icon="mdi-dots-vertical" id="user-menu-trigger" variant="text" />
 
         <!-- Desktop Menu -->
         <v-menu
@@ -55,13 +66,6 @@
             </v-list-item>
 
             <v-divider class="my-2"></v-divider>
-
-            <v-list-item
-              to="/settings"
-              prepend-icon="mdi-cog"
-              title="Settings"
-              @click="menu = false"
-            ></v-list-item>
 
             <v-list-item
               v-if="isAnonymous"

@@ -49,56 +49,6 @@ export const WEAPON_IDS: Record<number, string> = {
   1877: 'Emil Heads',
 }
 
-export const ACHIEVEMENT_IDS: Record<number, string> = {
-  5020: 'Resuscitated Body',
-  5021: 'Vestiges of Prosperity',
-  5022: "It's a Healthy Baby Boy!",
-  5023: 'We Await Your Next Visit',
-  5024: 'Creation and Insurrection',
-  5025: 'The Mechanical Kingdom',
-  5026: 'Ruler of the Deep',
-  5027: 'Those Who Love Humans',
-  5028: 'Iron Soul',
-  5029: 'One Battle Ends',
-  5030: 'A New Battle Begins',
-  5031: 'Final Wish',
-  5032: 'Treacherous Blade',
-  5033: 'Farewell, Pascal',
-  5034: 'Justice',
-  5035: 'Crime and Punishment',
-  5036: 'Leaving for the New World',
-  5037: 'Beautiful World',
-  5038: 'The Minds That Emerged',
-  5039: 'The Circle of Death',
-  5040: 'Cherish Our Resources',
-  5041: 'First Errand',
-  5042: 'The Mercenary',
-  5043: 'Information Master',
-  5044: 'Destruction is My Job',
-  5045: 'Chip Collector',
-  5046: 'Weapons Maniac',
-  5047: 'Tools of the Trade',
-  5048: 'Inorganic Blade',
-  5049: 'Supreme Support Weapons',
-  5050: "Fighting's Not My Thing",
-  5051: "A Scanner's Power",
-  5052: 'Machines vs. Machines',
-  5053: 'The Power of Hate',
-  5054: 'Ruler of the Skies',
-  5055: 'Harvest King',
-  5056: 'Pod Hunter',
-  5057: 'Desire Without Emotion',
-  5058: 'Animal Rider',
-  5059: 'A Round by the Pond',
-  5060: "Wait! Don't Kill Me!",
-  5061: 'What Are You Doing?',
-  5062: 'Not That I Mind...',
-  5063: 'Come Take a Look!',
-  5064: 'Naughty Children',
-  5065: 'Transcendent Being',
-  5066: 'Lunar Tear',
-}
-
 export const POD_PROGRAM_IDS: Record<number, string> = {
   2001: 'R010: Laser',
   2002: 'R020: Mirage',
@@ -161,13 +111,6 @@ export const FISH_IDS: Record<number, string> = {
   8039: 'Gas Cylinder',
   8040: 'Battery',
   8041: 'Broken Firearm',
-}
-
-export const NIER_ITEM_IDS: Record<number, string> = {
-  ...WEAPON_IDS,
-  ...POD_PROGRAM_IDS,
-  ...FISH_IDS,
-  ...ACHIEVEMENT_IDS,
 }
 
 export const ARCHIVE_IDS: Record<number, string> = {
@@ -238,6 +181,64 @@ export const ARCHIVE_IDS: Record<number, string> = {
   1170210: 'Project Gestalt Report 10', // Report10
   1170220: 'Project Gestalt Report 11', // Report11
   1180010: 'Machine Research Report', // H-RoboReport
+}
+
+// Not very accurate as of now, unused
+export const ACHIEVEMENT_IDS: Record<number, string> = {
+  5020: 'Resuscitated Body',
+  5021: 'Vestiges of Prosperity',
+  5022: "It's a Healthy Baby Boy!",
+  5023: 'We Await Your Next Visit',
+  5024: 'Creation and Insurrection',
+  5025: 'The Mechanical Kingdom',
+  5026: 'Ruler of the Deep',
+  5027: 'Those Who Love Humans',
+  5028: 'Iron Soul',
+  5029: 'One Battle Ends',
+  5030: 'A New Battle Begins',
+  5031: 'Final Wish',
+  5032: 'Treacherous Blade',
+  5033: 'Farewell, Pascal',
+  5034: 'Justice',
+  5035: 'Crime and Punishment',
+  5036: 'Leaving for the New World',
+  5037: 'Beautiful World',
+  5038: 'The Minds That Emerged',
+  5039: 'The Circle of Death',
+  5040: 'Cherish Our Resources',
+  5041: 'First Errand',
+  5042: 'The Mercenary',
+  5043: 'Information Master',
+  5044: 'Destruction is My Job',
+  5045: 'Chip Collector',
+  5046: 'Weapons Maniac',
+  5047: 'Tools of the Trade',
+  5048: 'Inorganic Blade',
+  5049: 'Supreme Support Weapons',
+  5050: "Fighting's Not My Thing",
+  5051: "A Scanner's Power",
+  5052: 'Machines vs. Machines',
+  5053: 'The Power of Hate',
+  5054: 'Ruler of the Skies',
+  5055: 'Harvest King',
+  5056: 'Pod Hunter',
+  5057: 'Desire Without Emotion',
+  5058: 'Animal Rider',
+  5059: 'A Round by the Pond',
+  5060: "Wait! Don't Kill Me!",
+  5061: 'What Are You Doing?',
+  5062: 'Not That I Mind...',
+  5063: 'Come Take a Look!',
+  5064: 'Naughty Children',
+  5065: 'Transcendent Being',
+  5066: 'Lunar Tear',
+}
+
+export const NIER_ITEM_IDS: Record<number, string> = {
+  ...WEAPON_IDS,
+  ...POD_PROGRAM_IDS,
+  ...FISH_IDS,
+  ...ARCHIVE_IDS,
 }
 
 // Helper to normalize names for matching with DB
