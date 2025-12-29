@@ -35,6 +35,7 @@ export default defineNuxtConfig({
       callback: '/confirm',
       include: ['/settings', '/new-password'],
     },
+    types: './app/types/database.types.ts',
   },
 
   components: [
