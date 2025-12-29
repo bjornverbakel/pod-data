@@ -1,9 +1,7 @@
 <template>
   <v-dialog v-model="clearDataDialog" closeable max-width="500">
     <v-card>
-      <v-card-title class="text-h6 text-truncate-wrap font-weight-bold"
-        >Confirm Deletion</v-card-title
-      >
+      <v-card-title class="text-h6 text-truncate-wrap">Confirm Deletion</v-card-title>
 
       <v-divider />
 
@@ -25,9 +23,7 @@
 
   <v-dialog v-model="deleteAccountDialog" closeable max-width="500">
     <v-card>
-      <v-card-title class="text-h6 text-truncate-wrap font-weight-bold"
-        >Confirm Account Deletion</v-card-title
-      >
+      <v-card-title class="text-h6 text-truncate-wrap">Confirm Account Deletion</v-card-title>
 
       <v-divider />
 

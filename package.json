@@ -5,7 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "dev:local": "nuxt dev --dotenv .env.local",
+    "dev:prod": "nuxt dev --dotenv .env.prod",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "supabase:types": "supabase gen types typescript --project-id uwxuwdrvfqbgczgpnxwb --schema public > app/types/database.types.ts",
@@ -13,21 +13,21 @@
     "supabase:dump": "supabase exec db dump -f db_schema.sql"
   },
   "devDependencies": {
-    "@nuxthub/core": "0.10.0",
+    "@nuxthub/core": "0.10.4",
     "@nuxtjs/turnstile": "^1.1.1",
     "nuxt": "4.1.3",
     "prettier": "^3.7.4",
-    "sass": "^1.96.0",
-    "vuetify-nuxt-module": "^0.18.8"
+    "sass": "^1.97.1",
+    "vuetify-nuxt-module": "^0.19.1"
   },
-  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
+  "packageManager": "pnpm@10.26.2",
   "dependencies": {
     "@mdi/font": "^7.4.47",
-    "@nuxtjs/seo": "^3.2.2",
+    "@nuxtjs/seo": "^3.3.0",
     "@nuxtjs/supabase": "^2.0.3",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.3.1",
-    "nuxt-og-image": "^5.1.12",
-    "vuetify": "^3.11.3"
+    "nuxt-og-image": "^5.1.13",
+    "vuetify": "^3.11.5"
   }
 }
