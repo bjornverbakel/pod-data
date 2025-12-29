@@ -159,6 +159,14 @@ export const useAuth = () => {
     })
   }
 
+  const deleteAccount = async () => {
+    const { error } = await client.rpc('delete_user')
+    if (error) throw error
+
+    await client.auth.signOut()
+    return navigateTo('/')
+  }
+
   return {
     isAnonymous,
     convertAnonymousToUser,
@@ -167,5 +175,6 @@ export const useAuth = () => {
     register,
     resendVerification,
     resetPassword,
+    deleteAccount,
   }
 }

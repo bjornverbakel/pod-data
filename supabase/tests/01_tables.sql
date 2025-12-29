@@ -1,8 +1,24 @@
 BEGIN;
-SELECT plan(3);
+SELECT plan(19);
 SELECT has_table('endings');
 SELECT has_table('profiles');
 SELECT has_table('user_endings');
+SELECT has_table('achievements');
+SELECT has_table('user_achievements');
+SELECT has_table('archives');
+SELECT has_table('user_archives');
+SELECT has_table('enemies');
+SELECT has_table('user_enemies');
+SELECT has_table('fish');
+SELECT has_table('user_fish');
+SELECT has_table('novels');
+SELECT has_table('user_novels');
+SELECT has_table('pod_programs');
+SELECT has_table('user_pod_programs');
+SELECT has_table('sidequests');
+SELECT has_table('user_sidequests');
+SELECT has_table('weapons');
+SELECT has_table('user_weapons');
 SELECT *
 FROM finish();
 ROLLBACK;

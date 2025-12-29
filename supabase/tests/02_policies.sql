@@ -1,37 +1,165 @@
 BEGIN;
-SELECT plan(3);
+SELECT plan(19);
 SELECT policies_are(
         'public',
         'endings',
         ARRAY [
-        'Public can read endings',
-        'endings_select_auth'
+        'Enable read access for all users'
     ]
     );
 SELECT policies_are(
         'public',
         'profiles',
         ARRAY [
-        'Authenticated can insert own profile',
-        'Users can read their own profile',
-        'Users can update their own profile',
-        'profiles_insert_own',
-        'profiles_select_own',
-        'profiles_update_own'
+        'Enable insert for users based on user_id',
+        'Enable users to view their own data only',
+        'Users can update their own profile'
     ]
     );
 SELECT policies_are(
         'public',
         'user_endings',
         ARRAY [
-        'Users can delete their own user_endings',
-        'Users can insert their own user_endings',
-        'Users can read their own user_endings',
-        'Users can update their own user_endings',
-        'user_endings_delete_own',
-        'user_endings_insert_own',
-        'user_endings_select_own',
-        'user_endings_update_own'
+        'Enable delete for users based on user_id',
+        'Enable insert for users based on user_id',
+        'Enable users to update their own data only',
+        'Enable users to view their own data only'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'achievements',
+        ARRAY [
+        'Enable read access for all users'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'user_achievements',
+        ARRAY [
+        'Enable delete for users based on user_id',
+        'Enable insert for users based on user_id',
+        'Enable users to update their own data only',
+        'Enable users to view their own data only'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'archives',
+        ARRAY [
+        'Enable read access for all users'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'user_archives',
+        ARRAY [
+        'Enable delete for users based on user_id',
+        'Enable insert for users based on user_id',
+        'Enable users to update their own data only',
+        'Enable users to view their own data only'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'enemies',
+        ARRAY [
+        'Enable read access for all users'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'user_enemies',
+        ARRAY [
+        'Enable delete for users based on user_id',
+        'Enable insert for users based on user_id',
+        'Enable users to update their own data only',
+        'Enable users to view their own data only'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'fish',
+        ARRAY [
+        'Enable read access for all users'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'user_fish',
+        ARRAY [
+        'Enable delete for users based on user_id',
+        'Enable insert for users based on user_id',
+        'Enable users to update their own data only',
+        'Enable users to view their own data only'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'novels',
+        ARRAY [
+        'Enable read access for all users'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'user_novels',
+        ARRAY [
+        'Enable delete for users based on user_id',
+        'Enable insert for users based on user_id',
+        'Enable users to update their own data only',
+        'Enable users to view their own data only'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'pod_programs',
+        ARRAY [
+        'Enable read access for all users'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'user_pod_programs',
+        ARRAY [
+        'Enable delete for users based on user_id',
+        'Enable insert for users based on user_id',
+        'Enable users to update their own data only',
+        'Enable users to view their own data only'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'sidequests',
+        ARRAY [
+        'Enable read access for all users'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'user_sidequests',
+        ARRAY [
+        'Enable delete for users based on user_id',
+        'Enable insert for users based on user_id',
+        'Enable users to update their own data only',
+        'Enable users to view their own data only'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'weapons',
+        ARRAY [
+        'Enable read access for all users'
+    ]
+    );
+SELECT policies_are(
+        'public',
+        'user_weapons',
+        ARRAY [
+        'Enable delete for users based on user_id',
+        'Enable insert for users based on user_id',
+        'Enable users to update their own data only',
+        'Enable users to view their own data only'
     ]
     );
 SELECT *
