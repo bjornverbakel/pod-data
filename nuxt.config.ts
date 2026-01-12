@@ -5,9 +5,13 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     'vuetify-nuxt-module',
     '@nuxtjs/turnstile',
-    'nuxt-og-image',
+    // 'nuxt-og-image', // Included in @nuxtjs/seo
     '@nuxtjs/seo',
   ],
+
+  ogImage: {
+    enabled: true,
+  },
 
   runtimeConfig: {
     turnstile: {
@@ -35,7 +39,7 @@ export default defineNuxtConfig({
       callback: '/confirm',
       include: ['/settings', '/new-password'],
     },
-    types: './app/types/database.types.ts',
+    types: '~/types/database.types.ts',
   },
 
   components: [
