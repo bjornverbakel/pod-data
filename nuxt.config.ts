@@ -9,6 +9,12 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
   ],
 
+  routeRules: {
+    '/': { swr: true },
+    '/about': { prerender: true },
+    '/disclaimer': { prerender: true },
+  },
+
   ogImage: {
     enabled: true,
   },
