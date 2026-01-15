@@ -131,7 +131,9 @@ useHead({
 
 const DISCORD_ID = '530835767551983646'
 
-const { data: discordData } = await useFetch<any>(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`)
+const { data: discordData } = useFetch<any>(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`, {
+  server: false,
+})
 
 const status = computed(() => {
   if (!discordData.value?.success) return 'offline'
