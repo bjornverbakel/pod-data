@@ -34,7 +34,3 @@ jobs:
         run: pnpm run build
         env:
           NODE_OPTIONS: --disable-warning=DEP0155
-          # Prerender runs SSR during build; @nuxtjs/supabase requires these to instantiate the client.
-          # Use repo secrets if present, otherwise fall back to harmless dummy values for CI.
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL || 'https://example.supabase.co' }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY || 'anon-key' }}
