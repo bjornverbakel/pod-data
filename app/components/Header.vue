@@ -175,12 +175,9 @@
 
 <script setup lang="ts">
 const { mdAndUp } = useDisplay()
-
-// During prerender/SSR (e.g. GitHub Actions), Supabase env vars may be missing.
-// Avoid initializing Supabase composables on the server so static pages can render.
-const user = import.meta.client ? useSupabaseUser() : ref(null)
-const { profile } = import.meta.client ? useProfile() : { profile: ref(null) }
-const { isAnonymous } = import.meta.client ? useAuth() : { isAnonymous: computed(() => false) }
+const user = useSupabaseUser()
+const { profile } = useProfile()
+const { isAnonymous } = useAuth()
 const loading = ref(false)
 const menu = ref(false)
 
