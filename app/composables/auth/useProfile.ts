@@ -4,10 +4,14 @@ type Profile = Database['public']['Tables']['profiles']['Row']
 
 export const useProfile = () => {
   const user = useSupabaseUser()
-  const client = useSupabaseClient<Database>()
   const profile = useState<Profile | null>('profile', () => null)
 
   const fetchProfile = async () => {
+    if (import.meta.server) {
+      return
+    }
+
+    const client = useSupabaseClient<Database>()
     const userId = user.value?.id || user.value?.sub
     if (!userId) {
       profile.value = null
@@ -25,6 +29,11 @@ export const useProfile = () => {
   }
 
   const updateProfile = async (updates: Partial<Profile>) => {
+    if (import.meta.server) {
+      return { error: new Error('Not available on server') }
+    }
+
+    const client = useSupabaseClient<Database>()
     const userId = user.value?.id || user.value?.sub
     if (!userId) return { error: new Error('No user logged in') }
 
@@ -45,17 +54,19 @@ export const useProfile = () => {
   }
 
   // Fetch profile when user changes
-  watch(
-    () => user.value?.id || user.value?.sub,
-    userId => {
-      if (userId) {
-        fetchProfile()
-      } else {
-        profile.value = null
-      }
-    },
-    { immediate: true }
-  )
+  if (import.meta.client) {
+    watch(
+      () => user.value?.id || user.value?.sub,
+      userId => {
+        if (userId) {
+          fetchProfile()
+        } else {
+          profile.value = null
+        }
+      },
+      { immediate: true }
+    )
+  }
 
   return {
     profile,

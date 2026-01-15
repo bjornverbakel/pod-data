@@ -1,12 +1,12 @@
 export const useAuth = () => {
   const user = useSupabaseUser()
-  const client = useSupabaseClient()
 
   const isAnonymous = computed(() => {
     return user.value?.is_anonymous ?? false
   })
 
   const signInAnonymously = async () => {
+    const client = useSupabaseClient()
     return await client.auth.signInAnonymously()
   }
 
@@ -33,6 +33,7 @@ export const useAuth = () => {
       }
     }
 
+    const client = useSupabaseClient()
     return await client.auth.signInWithPassword({
       email,
       password,
@@ -78,6 +79,7 @@ export const useAuth = () => {
 
     // Update profile first to avoid race conditions with useProfile watcher
     if (username && userId) {
+      const client = useSupabaseClient()
       const { data: profileData, error: profileError } = await client
         .from('profiles')
         .upsert({
@@ -98,6 +100,7 @@ export const useAuth = () => {
       profile.value = profileData
     }
 
+    const client = useSupabaseClient()
     const { data, error } = await client.auth.updateUser(updateData)
 
     return { data, error }

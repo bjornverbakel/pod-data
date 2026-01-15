@@ -178,7 +178,6 @@ const { mdAndUp } = useDisplay()
 const user = useSupabaseUser()
 const { profile } = useProfile()
 const { isAnonymous } = useAuth()
-const client = useSupabaseClient()
 const loading = ref(false)
 const menu = ref(false)
 
@@ -193,6 +192,7 @@ const toggleDrawer = () => {
 
 const logout = async () => {
   loading.value = true
+  const client = useSupabaseClient()
   const { error } = await client.auth.signOut()
   loading.value = false
   navigateTo('/')

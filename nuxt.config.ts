@@ -10,6 +10,10 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
   ],
 
+  sitemap: {
+    zeroRuntime: true,
+  },
+
   routeRules: {
     '/': { swr: true },
     '/about': { prerender: true },

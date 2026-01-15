@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "nuxt build",
+    "build:quiet": "node --disable-warning=DEP0155 ./node_modules/nuxt/bin/nuxt.mjs build",
     "dev": "nuxt dev",
     "dev:prod": "nuxt dev --dotenv .env.prod",
     "generate": "nuxt generate",

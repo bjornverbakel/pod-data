@@ -32,3 +32,5 @@ jobs:
 
       - name: Build Nuxt
         run: pnpm run build
+        env:
+          NODE_OPTIONS: --disable-warning=DEP0155
